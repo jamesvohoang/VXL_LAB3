@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "software_timer.h": "c",
+    "input_reading.h": "c"
+  }
+}
