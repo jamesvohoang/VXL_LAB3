@@ -1,6 +1,8 @@
 {
   "files.associations": {
     "software_timer.h": "c",
-    "input_reading.h": "c"
+    "input_reading.h": "c",
+    "input_processing.h": "c",
+    "main.h": "c"
   }
 }

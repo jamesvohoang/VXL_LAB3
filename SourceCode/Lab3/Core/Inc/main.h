@@ -31,7 +31,10 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "software_timer.h"
+#include "input_processing.h"
+#include "input_reading.h"
+#include "led_controlling.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -93,6 +96,14 @@ void Error_Handler(void);
 #define GRN2_GPIO_Port GPIOA
 #define GRN3_Pin GPIO_PIN_11
 #define GRN3_GPIO_Port GPIOA
+#define EN3_Pin GPIO_PIN_12
+#define EN3_GPIO_Port GPIOA
+#define EN0_Pin GPIO_PIN_13
+#define EN0_GPIO_Port GPIOA
+#define EN1_Pin GPIO_PIN_14
+#define EN1_GPIO_Port GPIOA
+#define EN2_Pin GPIO_PIN_15
+#define EN2_GPIO_Port GPIOA
 #define SEG3_Pin GPIO_PIN_3
 #define SEG3_GPIO_Port GPIOB
 #define SEG4_Pin GPIO_PIN_4

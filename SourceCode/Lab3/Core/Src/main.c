@@ -21,13 +21,18 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "input_processing.h"
-#include "input_reading.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+typedef enum
+{
+  RED1_GREEN2,
+  RED1_YELLOW2,
+  GREEN1_RED2,
+  YELLOW1_RED2
+}TrafficLightColor;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -52,6 +57,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
+
 
 /* USER CODE END PFP */
 
@@ -90,8 +96,18 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+  uint8_t count0 = 0;
+  uint8_t count1 = 0;
+  uint8_t segLedIndex = 2;
+  TrafficLightColor trafficLightState = 4;
   HAL_TIM_Base_Start_IT(&htim2);
 
+  TurnAllLightsOff();
+  DisableAllSegs();
+  // set timer 1 in 1Hz
+  setTimer1(100);
+  // set timer 2 in 5Hz. Use for scan 7Segment Leds
+  setTimer2(20);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -99,9 +115,139 @@ int main(void)
   while (1)
   {
     fsm_for_input_processing();
+
+    if(modeState != NORMAL)
+    {
+      if(timer1_flag)
+      {
+        switch (modeState)
+        {
+        case MODIFY_FOR_RED:
+          ToggleAllRedLeds();
+
+          break;
+
+        case MODIFY_FOR_YELLOW:
+          ToggleAllYellowLeds();
+          break;
+
+        case MODIFY_FOR_GREEN:
+          ToggleAllGreenLeds();
+          break;
+        
+        default:
+          break;
+        }
+        // set timer 1 in 2Hz
+        setTimer1(50);
+      }
+    }
+    else
+    {
+      if(timer1_flag)
+      {
+        // Check does need to Change Traffic state
+        if(!count0 || !count1)
+        {
+          if(trafficLightState >= 4)
+            trafficLightState = 0;
+          else
+            trafficLightState++;
+          
+          switch (trafficLightState)
+          {
+          case RED1_GREEN2:
+            // Turn lights on
+            TurnAllLightsOff();
+            HAL_GPIO_WritePin(RED0_GPIO_Port, RED0_Pin, 0);
+            HAL_GPIO_WritePin(GRN1_GPIO_Port, GRN1_Pin, 0);
+
+            // Set counting down
+            count0 = durationOfRed + 1;
+            count1 = durationOfGreen + 1;
+            break;
+
+          case RED1_YELLOW2:
+            // Turn lights on
+            TurnAllLightsOff();
+            HAL_GPIO_WritePin(RED0_GPIO_Port, RED0_Pin, 0);
+            HAL_GPIO_WritePin(YEL1_GPIO_Port, YEL1_Pin, 0);
+
+            // Set counting down
+            //count0 = durationOfRed + 1;
+            count1 = durationOfYellow;
+            break;
+
+          case GREEN1_RED2:
+            // Turn lights on
+            TurnAllLightsOff();
+            HAL_GPIO_WritePin(GRN0_GPIO_Port, GRN0_Pin, 0);
+            HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, 0);
+
+            // Set counting down
+            count0 = durationOfGreen + 1;
+            count1 = durationOfRed + 1;
+            break;
+
+          case YELLOW1_RED2:
+            TurnAllLightsOff();
+            HAL_GPIO_WritePin(YEL0_GPIO_Port, YEL0_Pin, 0);
+            HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, 0);
+
+            // Set counting down
+            count0 = durationOfYellow;
+            //count1 = durationOfRed + 1;
+            break;
+
+          default:
+            break;
+          }
+        }
+        count0--;
+        count1--;
+        
+        setTimer1(100);
+      }
+
+      if(timer2_flag)
+      {
+        // Scan 7seg Leds
+        Disable7SEG(segLedIndex);
+        segLedIndex++;
+        if(segLedIndex >= 4)
+        {
+          segLedIndex = 0;
+        }
+        
+        switch (segLedIndex)
+        {
+        case 0:
+          display7SEG(count0/10);
+          break;
+        case 1:
+          display7SEG(count0%10);
+          break;
+        case 2:
+          display7SEG(count1/10);
+          break;
+        case 3:
+          display7SEG(count1%10);
+          break;
+        
+        default:
+          break;
+        }
+        Enable7SEG(segLedIndex);
+
+        // set timer 2 in 5Hz
+        setTimer2(20);
+      }
+    }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    //HAL_Delay(10);
   }
   /* USER CODE END 3 */
 }
@@ -205,7 +351,8 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, RED0_Pin|RED1_Pin|RED2_Pin|RED3_Pin
                           |YEL0_Pin|YEL1_Pin|YEL2_Pin|YEL3_Pin
-                          |GRN0_Pin|GRN1_Pin|GRN2_Pin|GRN3_Pin, GPIO_PIN_RESET);
+                          |GRN0_Pin|GRN1_Pin|GRN2_Pin|GRN3_Pin
+                          |EN3_Pin|EN0_Pin|EN1_Pin|EN2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SEG0_Pin|SEG1_Pin|SEG2_Pin|SEG3_Pin
@@ -213,10 +360,12 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : RED0_Pin RED1_Pin RED2_Pin RED3_Pin
                            YEL0_Pin YEL1_Pin YEL2_Pin YEL3_Pin
-                           GRN0_Pin GRN1_Pin GRN2_Pin GRN3_Pin */
+                           GRN0_Pin GRN1_Pin GRN2_Pin GRN3_Pin
+                           EN3_Pin EN0_Pin EN1_Pin EN2_Pin */
   GPIO_InitStruct.Pin = RED0_Pin|RED1_Pin|RED2_Pin|RED3_Pin
                           |YEL0_Pin|YEL1_Pin|YEL2_Pin|YEL3_Pin
-                          |GRN0_Pin|GRN1_Pin|GRN2_Pin|GRN3_Pin;
+                          |GRN0_Pin|GRN1_Pin|GRN2_Pin|GRN3_Pin
+                          |EN3_Pin|EN0_Pin|EN1_Pin|EN2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -246,6 +395,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   if(htim -> Instance == TIM2)
   {
+    timerRun();
     button_reading();
   }
 }
