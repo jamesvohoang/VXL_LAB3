@@ -50,6 +50,7 @@ TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
 
+uint8_t segLedIndex = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -58,6 +59,42 @@ static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
+void Scan7SEG(uint8_t val0, uint8_t val1)
+{
+  if(timer2_flag)
+  {
+    // Scan 7seg Leds
+    Disable7SEG(segLedIndex);
+    segLedIndex++;
+    if(segLedIndex >= 4)
+    {
+      segLedIndex = 0;
+    }
+    
+    switch (segLedIndex)
+    {
+      case 0:
+        display7SEG(val0/10);
+        break;
+      case 1:
+        display7SEG(val0%10);
+        break;
+      case 2:
+        display7SEG(val1/10);
+        break;
+      case 3:
+        display7SEG(val1%10);
+        break;
+      
+      default:
+        break;
+    }
+    Enable7SEG(segLedIndex);
+
+    // set timer 2 in 2Hz
+    setTimer2(50);
+  }
+}
 
 /* USER CODE END PFP */
 
@@ -98,16 +135,19 @@ int main(void)
   /* USER CODE BEGIN 2 */
   uint8_t count0 = 0;
   uint8_t count1 = 0;
-  uint8_t segLedIndex = 2;
   TrafficLightColor trafficLightState = 4;
-  HAL_TIM_Base_Start_IT(&htim2);
 
+  // Initialize traffic system
+  HAL_TIM_Base_Start_IT(&htim2);
+  modeState = NORMAL;
   TurnAllLightsOff();
   DisableAllSegs();
+
   // set timer 1 in 1Hz
   setTimer1(100);
-  // set timer 2 in 5Hz. Use for scan 7Segment Leds
-  setTimer2(20);
+  // set timer 2 in 2Hz. Use for scan 7Segment Leds
+  setTimer2(50);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -124,15 +164,17 @@ int main(void)
         {
         case MODIFY_FOR_RED:
           ToggleAllRedLeds();
-
+          Scan7SEG(modeState, durationOfRed);
           break;
 
         case MODIFY_FOR_YELLOW:
           ToggleAllYellowLeds();
+          Scan7SEG(modeState, durationOfYellow);
           break;
 
         case MODIFY_FOR_GREEN:
           ToggleAllGreenLeds();
+          Scan7SEG(modeState, durationOfGreen);
           break;
         
         default:
@@ -209,41 +251,8 @@ int main(void)
         setTimer1(100);
       }
 
-      if(timer2_flag)
-      {
-        // Scan 7seg Leds
-        Disable7SEG(segLedIndex);
-        segLedIndex++;
-        if(segLedIndex >= 4)
-        {
-          segLedIndex = 0;
-        }
-        
-        switch (segLedIndex)
-        {
-        case 0:
-          display7SEG(count0/10);
-          break;
-        case 1:
-          display7SEG(count0%10);
-          break;
-        case 2:
-          display7SEG(count1/10);
-          break;
-        case 3:
-          display7SEG(count1%10);
-          break;
-        
-        default:
-          break;
-        }
-        Enable7SEG(segLedIndex);
-
-        // set timer 2 in 5Hz
-        setTimer2(20);
-      }
+      Scan7SEG(count0, count1);
     }
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
