@@ -1,0 +1,879 @@
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"seg_controlling.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.DisplayNum,"ax",%progbits
+  18              		.align	1
+  19              		.global	DisplayNum
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	DisplayNum:
+  25              	.LVL0:
+  26              	.LFB65:
+  27              		.file 1 "Core/Src/seg_controlling.c"
+   1:Core/Src/seg_controlling.c **** #include "seg_controlling.h"
+   2:Core/Src/seg_controlling.c **** 
+   3:Core/Src/seg_controlling.c **** void DisplayNum(uint8_t a, uint8_t b, uint8_t c, uint8_t d, uint8_t e, uint8_t f, uint8_t g )
+   4:Core/Src/seg_controlling.c **** {
+  28              		.loc 1 4 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 12, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 4 1 is_stmt 0 view .LVU1
+  33 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 24
+  36              		.cfi_offset 3, -24
+  37              		.cfi_offset 4, -20
+  38              		.cfi_offset 5, -16
+  39              		.cfi_offset 6, -12
+  40              		.cfi_offset 7, -8
+  41              		.cfi_offset 14, -4
+  42 0002 0F46     		mov	r7, r1
+  43 0004 1646     		mov	r6, r2
+  44 0006 1D46     		mov	r5, r3
+   5:Core/Src/seg_controlling.c ****     HAL_GPIO_WritePin(SEG0_GPIO_Port, SEG0_Pin, a);
+  45              		.loc 1 5 5 is_stmt 1 view .LVU2
+  46 0008 134C     		ldr	r4, .L3
+  47 000a 0246     		mov	r2, r0
+  48              	.LVL1:
+  49              		.loc 1 5 5 is_stmt 0 view .LVU3
+  50 000c 0121     		movs	r1, #1
+  51              	.LVL2:
+  52              		.loc 1 5 5 view .LVU4
+  53 000e 2046     		mov	r0, r4
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 2
+
+
+  54              	.LVL3:
+  55              		.loc 1 5 5 view .LVU5
+  56 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  57              	.LVL4:
+   6:Core/Src/seg_controlling.c ****     HAL_GPIO_WritePin(SEG1_GPIO_Port, SEG1_Pin, b);
+  58              		.loc 1 6 5 is_stmt 1 view .LVU6
+  59 0014 3A46     		mov	r2, r7
+  60 0016 0221     		movs	r1, #2
+  61 0018 2046     		mov	r0, r4
+  62 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  63              	.LVL5:
+   7:Core/Src/seg_controlling.c ****     HAL_GPIO_WritePin(SEG2_GPIO_Port, SEG2_Pin, c);
+  64              		.loc 1 7 5 view .LVU7
+  65 001e 3246     		mov	r2, r6
+  66 0020 0421     		movs	r1, #4
+  67 0022 2046     		mov	r0, r4
+  68 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  69              	.LVL6:
+   8:Core/Src/seg_controlling.c ****     HAL_GPIO_WritePin(SEG3_GPIO_Port, SEG3_Pin, d);
+  70              		.loc 1 8 5 view .LVU8
+  71 0028 2A46     		mov	r2, r5
+  72 002a 0821     		movs	r1, #8
+  73 002c 2046     		mov	r0, r4
+  74 002e FFF7FEFF 		bl	HAL_GPIO_WritePin
+  75              	.LVL7:
+   9:Core/Src/seg_controlling.c ****     HAL_GPIO_WritePin(SEG4_GPIO_Port, SEG4_Pin, e);
+  76              		.loc 1 9 5 view .LVU9
+  77 0032 9DF81820 		ldrb	r2, [sp, #24]	@ zero_extendqisi2
+  78 0036 1021     		movs	r1, #16
+  79 0038 2046     		mov	r0, r4
+  80 003a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  81              	.LVL8:
+  10:Core/Src/seg_controlling.c ****     HAL_GPIO_WritePin(SEG5_GPIO_Port, SEG5_Pin, f);
+  82              		.loc 1 10 5 view .LVU10
+  83 003e 9DF81C20 		ldrb	r2, [sp, #28]	@ zero_extendqisi2
+  84 0042 2021     		movs	r1, #32
+  85 0044 2046     		mov	r0, r4
+  86 0046 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  87              	.LVL9:
+  11:Core/Src/seg_controlling.c ****     HAL_GPIO_WritePin(SEG6_GPIO_Port, SEG6_Pin, g);
+  88              		.loc 1 11 5 view .LVU11
+  89 004a 9DF82020 		ldrb	r2, [sp, #32]	@ zero_extendqisi2
+  90 004e 4021     		movs	r1, #64
+  91 0050 2046     		mov	r0, r4
+  92 0052 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  93              	.LVL10:
+  12:Core/Src/seg_controlling.c **** }
+  94              		.loc 1 12 1 is_stmt 0 view .LVU12
+  95 0056 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+  96              	.LVL11:
+  97              	.L4:
+  98              		.loc 1 12 1 view .LVU13
+  99              		.align	2
+ 100              	.L3:
+ 101 0058 000C0140 		.word	1073810432
+ 102              		.cfi_endproc
+ 103              	.LFE65:
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 3
+
+
+ 105              		.section	.text.display7SEG,"ax",%progbits
+ 106              		.align	1
+ 107              		.global	display7SEG
+ 108              		.syntax unified
+ 109              		.thumb
+ 110              		.thumb_func
+ 112              	display7SEG:
+ 113              	.LVL12:
+ 114              	.LFB66:
+  13:Core/Src/seg_controlling.c **** 
+  14:Core/Src/seg_controlling.c **** void display7SEG(int num)
+  15:Core/Src/seg_controlling.c **** {
+ 115              		.loc 1 15 1 is_stmt 1 view -0
+ 116              		.cfi_startproc
+ 117              		@ args = 0, pretend = 0, frame = 0
+ 118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 119              		.loc 1 15 1 is_stmt 0 view .LVU15
+ 120 0000 00B5     		push	{lr}
+ 121              	.LCFI1:
+ 122              		.cfi_def_cfa_offset 4
+ 123              		.cfi_offset 14, -4
+ 124 0002 85B0     		sub	sp, sp, #20
+ 125              	.LCFI2:
+ 126              		.cfi_def_cfa_offset 24
+  16:Core/Src/seg_controlling.c ****   switch (num)
+ 127              		.loc 1 16 3 is_stmt 1 view .LVU16
+ 128 0004 0928     		cmp	r0, #9
+ 129 0006 10D8     		bhi	.L5
+ 130 0008 DFE800F0 		tbb	[pc, r0]
+ 131              	.L8:
+ 132 000c 05       		.byte	(.L17-.L8)/2
+ 133 000d 12       		.byte	(.L16-.L8)/2
+ 134 000e 1C       		.byte	(.L15-.L8)/2
+ 135 000f 26       		.byte	(.L14-.L8)/2
+ 136 0010 31       		.byte	(.L13-.L8)/2
+ 137 0011 3B       		.byte	(.L12-.L8)/2
+ 138 0012 45       		.byte	(.L11-.L8)/2
+ 139 0013 4F       		.byte	(.L10-.L8)/2
+ 140 0014 59       		.byte	(.L9-.L8)/2
+ 141 0015 63       		.byte	(.L7-.L8)/2
+ 142              		.p2align 1
+ 143              	.L17:
+  17:Core/Src/seg_controlling.c ****   {
+  18:Core/Src/seg_controlling.c ****   case 0:
+  19:Core/Src/seg_controlling.c ****     DisplayNum(0, 0, 0, 0, 0, 0, 1);
+ 144              		.loc 1 19 5 view .LVU17
+ 145 0016 0123     		movs	r3, #1
+ 146 0018 0293     		str	r3, [sp, #8]
+ 147 001a 0020     		movs	r0, #0
+ 148              	.LVL13:
+ 149              		.loc 1 19 5 is_stmt 0 view .LVU18
+ 150 001c 0190     		str	r0, [sp, #4]
+ 151 001e 0090     		str	r0, [sp]
+ 152 0020 0346     		mov	r3, r0
+ 153 0022 0246     		mov	r2, r0
+ 154 0024 0146     		mov	r1, r0
+ 155 0026 FFF7FEFF 		bl	DisplayNum
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 4
+
+
+ 156              	.LVL14:
+  20:Core/Src/seg_controlling.c ****     break;
+ 157              		.loc 1 20 5 is_stmt 1 view .LVU19
+ 158              	.L5:
+  21:Core/Src/seg_controlling.c ****   case 1:
+  22:Core/Src/seg_controlling.c ****     DisplayNum(1, 0, 0, 1, 1, 1, 1);
+  23:Core/Src/seg_controlling.c ****     break;
+  24:Core/Src/seg_controlling.c ****   case 2:
+  25:Core/Src/seg_controlling.c ****     DisplayNum(0, 0, 1, 0, 0, 1, 0);
+  26:Core/Src/seg_controlling.c ****     break;
+  27:Core/Src/seg_controlling.c ****   case 3:
+  28:Core/Src/seg_controlling.c ****     DisplayNum(0, 0, 0, 0, 1, 1, 0);
+  29:Core/Src/seg_controlling.c ****     break;
+  30:Core/Src/seg_controlling.c ****   case 4:
+  31:Core/Src/seg_controlling.c ****     DisplayNum(1, 0, 0, 1, 1, 0, 0);
+  32:Core/Src/seg_controlling.c ****     break;
+  33:Core/Src/seg_controlling.c ****   case 5:
+  34:Core/Src/seg_controlling.c ****     DisplayNum(0, 1, 0, 0, 1, 0, 0);
+  35:Core/Src/seg_controlling.c ****     break;
+  36:Core/Src/seg_controlling.c ****   case 6:
+  37:Core/Src/seg_controlling.c ****     DisplayNum(0, 1, 0, 0, 0, 0, 0);
+  38:Core/Src/seg_controlling.c ****     break;
+  39:Core/Src/seg_controlling.c ****   case 7:
+  40:Core/Src/seg_controlling.c ****     DisplayNum(0, 0, 0, 1, 1, 1, 1);
+  41:Core/Src/seg_controlling.c ****     break;
+  42:Core/Src/seg_controlling.c ****   case 8:
+  43:Core/Src/seg_controlling.c ****     DisplayNum(0, 0, 0, 0, 0, 0, 0);
+  44:Core/Src/seg_controlling.c ****     break;
+  45:Core/Src/seg_controlling.c ****   case 9:
+  46:Core/Src/seg_controlling.c ****     DisplayNum(0, 0, 0, 0, 1, 0, 0);
+  47:Core/Src/seg_controlling.c ****     break;
+  48:Core/Src/seg_controlling.c ****   
+  49:Core/Src/seg_controlling.c ****   default:
+  50:Core/Src/seg_controlling.c ****     break;
+  51:Core/Src/seg_controlling.c ****   }
+  52:Core/Src/seg_controlling.c **** }
+ 159              		.loc 1 52 1 is_stmt 0 view .LVU20
+ 160 002a 05B0     		add	sp, sp, #20
+ 161              	.LCFI3:
+ 162              		.cfi_remember_state
+ 163              		.cfi_def_cfa_offset 4
+ 164              		@ sp needed
+ 165 002c 5DF804FB 		ldr	pc, [sp], #4
+ 166              	.LVL15:
+ 167              	.L16:
+ 168              	.LCFI4:
+ 169              		.cfi_restore_state
+  22:Core/Src/seg_controlling.c ****     break;
+ 170              		.loc 1 22 5 is_stmt 1 view .LVU21
+ 171 0030 0120     		movs	r0, #1
+ 172              	.LVL16:
+  22:Core/Src/seg_controlling.c ****     break;
+ 173              		.loc 1 22 5 is_stmt 0 view .LVU22
+ 174 0032 0290     		str	r0, [sp, #8]
+ 175 0034 0190     		str	r0, [sp, #4]
+ 176 0036 0090     		str	r0, [sp]
+ 177 0038 0346     		mov	r3, r0
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 5
+
+
+ 178 003a 0022     		movs	r2, #0
+ 179 003c 1146     		mov	r1, r2
+ 180 003e FFF7FEFF 		bl	DisplayNum
+ 181              	.LVL17:
+  23:Core/Src/seg_controlling.c ****   case 2:
+ 182              		.loc 1 23 5 is_stmt 1 view .LVU23
+ 183 0042 F2E7     		b	.L5
+ 184              	.LVL18:
+ 185              	.L15:
+  25:Core/Src/seg_controlling.c ****     break;
+ 186              		.loc 1 25 5 view .LVU24
+ 187 0044 0020     		movs	r0, #0
+ 188              	.LVL19:
+  25:Core/Src/seg_controlling.c ****     break;
+ 189              		.loc 1 25 5 is_stmt 0 view .LVU25
+ 190 0046 0290     		str	r0, [sp, #8]
+ 191 0048 0122     		movs	r2, #1
+ 192 004a 0192     		str	r2, [sp, #4]
+ 193 004c 0090     		str	r0, [sp]
+ 194 004e 0346     		mov	r3, r0
+ 195 0050 0146     		mov	r1, r0
+ 196 0052 FFF7FEFF 		bl	DisplayNum
+ 197              	.LVL20:
+  26:Core/Src/seg_controlling.c ****   case 3:
+ 198              		.loc 1 26 5 is_stmt 1 view .LVU26
+ 199 0056 E8E7     		b	.L5
+ 200              	.LVL21:
+ 201              	.L14:
+  28:Core/Src/seg_controlling.c ****     break;
+ 202              		.loc 1 28 5 view .LVU27
+ 203 0058 0020     		movs	r0, #0
+ 204              	.LVL22:
+  28:Core/Src/seg_controlling.c ****     break;
+ 205              		.loc 1 28 5 is_stmt 0 view .LVU28
+ 206 005a 0290     		str	r0, [sp, #8]
+ 207 005c 0123     		movs	r3, #1
+ 208 005e 0193     		str	r3, [sp, #4]
+ 209 0060 0093     		str	r3, [sp]
+ 210 0062 0346     		mov	r3, r0
+ 211 0064 0246     		mov	r2, r0
+ 212 0066 0146     		mov	r1, r0
+ 213 0068 FFF7FEFF 		bl	DisplayNum
+ 214              	.LVL23:
+  29:Core/Src/seg_controlling.c ****   case 4:
+ 215              		.loc 1 29 5 is_stmt 1 view .LVU29
+ 216 006c DDE7     		b	.L5
+ 217              	.LVL24:
+ 218              	.L13:
+  31:Core/Src/seg_controlling.c ****     break;
+ 219              		.loc 1 31 5 view .LVU30
+ 220 006e 0021     		movs	r1, #0
+ 221 0070 0291     		str	r1, [sp, #8]
+ 222 0072 0191     		str	r1, [sp, #4]
+ 223 0074 0120     		movs	r0, #1
+ 224              	.LVL25:
+  31:Core/Src/seg_controlling.c ****     break;
+ 225              		.loc 1 31 5 is_stmt 0 view .LVU31
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 6
+
+
+ 226 0076 0090     		str	r0, [sp]
+ 227 0078 0346     		mov	r3, r0
+ 228 007a 0A46     		mov	r2, r1
+ 229 007c FFF7FEFF 		bl	DisplayNum
+ 230              	.LVL26:
+  32:Core/Src/seg_controlling.c ****   case 5:
+ 231              		.loc 1 32 5 is_stmt 1 view .LVU32
+ 232 0080 D3E7     		b	.L5
+ 233              	.LVL27:
+ 234              	.L12:
+  34:Core/Src/seg_controlling.c ****     break;
+ 235              		.loc 1 34 5 view .LVU33
+ 236 0082 0020     		movs	r0, #0
+ 237              	.LVL28:
+  34:Core/Src/seg_controlling.c ****     break;
+ 238              		.loc 1 34 5 is_stmt 0 view .LVU34
+ 239 0084 0290     		str	r0, [sp, #8]
+ 240 0086 0190     		str	r0, [sp, #4]
+ 241 0088 0121     		movs	r1, #1
+ 242 008a 0091     		str	r1, [sp]
+ 243 008c 0346     		mov	r3, r0
+ 244 008e 0246     		mov	r2, r0
+ 245 0090 FFF7FEFF 		bl	DisplayNum
+ 246              	.LVL29:
+  35:Core/Src/seg_controlling.c ****   case 6:
+ 247              		.loc 1 35 5 is_stmt 1 view .LVU35
+ 248 0094 C9E7     		b	.L5
+ 249              	.LVL30:
+ 250              	.L11:
+  37:Core/Src/seg_controlling.c ****     break;
+ 251              		.loc 1 37 5 view .LVU36
+ 252 0096 0020     		movs	r0, #0
+ 253              	.LVL31:
+  37:Core/Src/seg_controlling.c ****     break;
+ 254              		.loc 1 37 5 is_stmt 0 view .LVU37
+ 255 0098 0290     		str	r0, [sp, #8]
+ 256 009a 0190     		str	r0, [sp, #4]
+ 257 009c 0090     		str	r0, [sp]
+ 258 009e 0346     		mov	r3, r0
+ 259 00a0 0246     		mov	r2, r0
+ 260 00a2 0121     		movs	r1, #1
+ 261 00a4 FFF7FEFF 		bl	DisplayNum
+ 262              	.LVL32:
+  38:Core/Src/seg_controlling.c ****   case 7:
+ 263              		.loc 1 38 5 is_stmt 1 view .LVU38
+ 264 00a8 BFE7     		b	.L5
+ 265              	.LVL33:
+ 266              	.L10:
+  40:Core/Src/seg_controlling.c ****     break;
+ 267              		.loc 1 40 5 view .LVU39
+ 268 00aa 0123     		movs	r3, #1
+ 269 00ac 0293     		str	r3, [sp, #8]
+ 270 00ae 0193     		str	r3, [sp, #4]
+ 271 00b0 0093     		str	r3, [sp]
+ 272 00b2 0022     		movs	r2, #0
+ 273 00b4 1146     		mov	r1, r2
+ 274 00b6 1046     		mov	r0, r2
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 7
+
+
+ 275              	.LVL34:
+  40:Core/Src/seg_controlling.c ****     break;
+ 276              		.loc 1 40 5 is_stmt 0 view .LVU40
+ 277 00b8 FFF7FEFF 		bl	DisplayNum
+ 278              	.LVL35:
+  41:Core/Src/seg_controlling.c ****   case 8:
+ 279              		.loc 1 41 5 is_stmt 1 view .LVU41
+ 280 00bc B5E7     		b	.L5
+ 281              	.LVL36:
+ 282              	.L9:
+  43:Core/Src/seg_controlling.c ****     break;
+ 283              		.loc 1 43 5 view .LVU42
+ 284 00be 0020     		movs	r0, #0
+ 285              	.LVL37:
+  43:Core/Src/seg_controlling.c ****     break;
+ 286              		.loc 1 43 5 is_stmt 0 view .LVU43
+ 287 00c0 0290     		str	r0, [sp, #8]
+ 288 00c2 0190     		str	r0, [sp, #4]
+ 289 00c4 0090     		str	r0, [sp]
+ 290 00c6 0346     		mov	r3, r0
+ 291 00c8 0246     		mov	r2, r0
+ 292 00ca 0146     		mov	r1, r0
+ 293 00cc FFF7FEFF 		bl	DisplayNum
+ 294              	.LVL38:
+  44:Core/Src/seg_controlling.c ****   case 9:
+ 295              		.loc 1 44 5 is_stmt 1 view .LVU44
+ 296 00d0 ABE7     		b	.L5
+ 297              	.LVL39:
+ 298              	.L7:
+  46:Core/Src/seg_controlling.c ****     break;
+ 299              		.loc 1 46 5 view .LVU45
+ 300 00d2 0020     		movs	r0, #0
+ 301              	.LVL40:
+  46:Core/Src/seg_controlling.c ****     break;
+ 302              		.loc 1 46 5 is_stmt 0 view .LVU46
+ 303 00d4 0290     		str	r0, [sp, #8]
+ 304 00d6 0190     		str	r0, [sp, #4]
+ 305 00d8 0123     		movs	r3, #1
+ 306 00da 0093     		str	r3, [sp]
+ 307 00dc 0346     		mov	r3, r0
+ 308 00de 0246     		mov	r2, r0
+ 309 00e0 0146     		mov	r1, r0
+ 310 00e2 FFF7FEFF 		bl	DisplayNum
+ 311              	.LVL41:
+  47:Core/Src/seg_controlling.c ****   
+ 312              		.loc 1 47 5 is_stmt 1 view .LVU47
+ 313              		.loc 1 52 1 is_stmt 0 view .LVU48
+ 314 00e6 A0E7     		b	.L5
+ 315              		.cfi_endproc
+ 316              	.LFE66:
+ 318              		.section	.text.EnableSeg0,"ax",%progbits
+ 319              		.align	1
+ 320              		.global	EnableSeg0
+ 321              		.syntax unified
+ 322              		.thumb
+ 323              		.thumb_func
+ 325              	EnableSeg0:
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 8
+
+
+ 326              	.LFB67:
+  53:Core/Src/seg_controlling.c **** 
+  54:Core/Src/seg_controlling.c **** void EnableSeg0()
+  55:Core/Src/seg_controlling.c **** {
+ 327              		.loc 1 55 1 is_stmt 1 view -0
+ 328              		.cfi_startproc
+ 329              		@ args = 0, pretend = 0, frame = 0
+ 330              		@ frame_needed = 0, uses_anonymous_args = 0
+ 331 0000 08B5     		push	{r3, lr}
+ 332              	.LCFI5:
+ 333              		.cfi_def_cfa_offset 8
+ 334              		.cfi_offset 3, -8
+ 335              		.cfi_offset 14, -4
+  56:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, 0);
+ 336              		.loc 1 56 3 view .LVU50
+ 337 0002 0022     		movs	r2, #0
+ 338 0004 4FF40051 		mov	r1, #8192
+ 339 0008 0148     		ldr	r0, .L21
+ 340 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 341              	.LVL42:
+  57:Core/Src/seg_controlling.c **** }
+ 342              		.loc 1 57 1 is_stmt 0 view .LVU51
+ 343 000e 08BD     		pop	{r3, pc}
+ 344              	.L22:
+ 345              		.align	2
+ 346              	.L21:
+ 347 0010 00080140 		.word	1073809408
+ 348              		.cfi_endproc
+ 349              	.LFE67:
+ 351              		.section	.text.DisableSeg0,"ax",%progbits
+ 352              		.align	1
+ 353              		.global	DisableSeg0
+ 354              		.syntax unified
+ 355              		.thumb
+ 356              		.thumb_func
+ 358              	DisableSeg0:
+ 359              	.LFB68:
+  58:Core/Src/seg_controlling.c **** void DisableSeg0()
+  59:Core/Src/seg_controlling.c **** {
+ 360              		.loc 1 59 1 is_stmt 1 view -0
+ 361              		.cfi_startproc
+ 362              		@ args = 0, pretend = 0, frame = 0
+ 363              		@ frame_needed = 0, uses_anonymous_args = 0
+ 364 0000 08B5     		push	{r3, lr}
+ 365              	.LCFI6:
+ 366              		.cfi_def_cfa_offset 8
+ 367              		.cfi_offset 3, -8
+ 368              		.cfi_offset 14, -4
+  60:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, 1);
+ 369              		.loc 1 60 3 view .LVU53
+ 370 0002 0122     		movs	r2, #1
+ 371 0004 4FF40051 		mov	r1, #8192
+ 372 0008 0148     		ldr	r0, .L25
+ 373 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 374              	.LVL43:
+  61:Core/Src/seg_controlling.c **** }
+ 375              		.loc 1 61 1 is_stmt 0 view .LVU54
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 9
+
+
+ 376 000e 08BD     		pop	{r3, pc}
+ 377              	.L26:
+ 378              		.align	2
+ 379              	.L25:
+ 380 0010 00080140 		.word	1073809408
+ 381              		.cfi_endproc
+ 382              	.LFE68:
+ 384              		.section	.text.EnableSeg1,"ax",%progbits
+ 385              		.align	1
+ 386              		.global	EnableSeg1
+ 387              		.syntax unified
+ 388              		.thumb
+ 389              		.thumb_func
+ 391              	EnableSeg1:
+ 392              	.LFB69:
+  62:Core/Src/seg_controlling.c **** void EnableSeg1()
+  63:Core/Src/seg_controlling.c **** {
+ 393              		.loc 1 63 1 is_stmt 1 view -0
+ 394              		.cfi_startproc
+ 395              		@ args = 0, pretend = 0, frame = 0
+ 396              		@ frame_needed = 0, uses_anonymous_args = 0
+ 397 0000 08B5     		push	{r3, lr}
+ 398              	.LCFI7:
+ 399              		.cfi_def_cfa_offset 8
+ 400              		.cfi_offset 3, -8
+ 401              		.cfi_offset 14, -4
+  64:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 0);
+ 402              		.loc 1 64 3 view .LVU56
+ 403 0002 0022     		movs	r2, #0
+ 404 0004 4FF48041 		mov	r1, #16384
+ 405 0008 0148     		ldr	r0, .L29
+ 406 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 407              	.LVL44:
+  65:Core/Src/seg_controlling.c **** }
+ 408              		.loc 1 65 1 is_stmt 0 view .LVU57
+ 409 000e 08BD     		pop	{r3, pc}
+ 410              	.L30:
+ 411              		.align	2
+ 412              	.L29:
+ 413 0010 00080140 		.word	1073809408
+ 414              		.cfi_endproc
+ 415              	.LFE69:
+ 417              		.section	.text.DisableSeg1,"ax",%progbits
+ 418              		.align	1
+ 419              		.global	DisableSeg1
+ 420              		.syntax unified
+ 421              		.thumb
+ 422              		.thumb_func
+ 424              	DisableSeg1:
+ 425              	.LFB70:
+  66:Core/Src/seg_controlling.c **** void DisableSeg1()
+  67:Core/Src/seg_controlling.c **** {
+ 426              		.loc 1 67 1 is_stmt 1 view -0
+ 427              		.cfi_startproc
+ 428              		@ args = 0, pretend = 0, frame = 0
+ 429              		@ frame_needed = 0, uses_anonymous_args = 0
+ 430 0000 08B5     		push	{r3, lr}
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 10
+
+
+ 431              	.LCFI8:
+ 432              		.cfi_def_cfa_offset 8
+ 433              		.cfi_offset 3, -8
+ 434              		.cfi_offset 14, -4
+  68:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 1);
+ 435              		.loc 1 68 3 view .LVU59
+ 436 0002 0122     		movs	r2, #1
+ 437 0004 4FF48041 		mov	r1, #16384
+ 438 0008 0148     		ldr	r0, .L33
+ 439 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 440              	.LVL45:
+  69:Core/Src/seg_controlling.c **** }
+ 441              		.loc 1 69 1 is_stmt 0 view .LVU60
+ 442 000e 08BD     		pop	{r3, pc}
+ 443              	.L34:
+ 444              		.align	2
+ 445              	.L33:
+ 446 0010 00080140 		.word	1073809408
+ 447              		.cfi_endproc
+ 448              	.LFE70:
+ 450              		.section	.text.EnableSeg2,"ax",%progbits
+ 451              		.align	1
+ 452              		.global	EnableSeg2
+ 453              		.syntax unified
+ 454              		.thumb
+ 455              		.thumb_func
+ 457              	EnableSeg2:
+ 458              	.LFB71:
+  70:Core/Src/seg_controlling.c **** void EnableSeg2()
+  71:Core/Src/seg_controlling.c **** {
+ 459              		.loc 1 71 1 is_stmt 1 view -0
+ 460              		.cfi_startproc
+ 461              		@ args = 0, pretend = 0, frame = 0
+ 462              		@ frame_needed = 0, uses_anonymous_args = 0
+ 463 0000 08B5     		push	{r3, lr}
+ 464              	.LCFI9:
+ 465              		.cfi_def_cfa_offset 8
+ 466              		.cfi_offset 3, -8
+ 467              		.cfi_offset 14, -4
+  72:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 0);
+ 468              		.loc 1 72 3 view .LVU62
+ 469 0002 0022     		movs	r2, #0
+ 470 0004 4FF40041 		mov	r1, #32768
+ 471 0008 0148     		ldr	r0, .L37
+ 472 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 473              	.LVL46:
+  73:Core/Src/seg_controlling.c **** }
+ 474              		.loc 1 73 1 is_stmt 0 view .LVU63
+ 475 000e 08BD     		pop	{r3, pc}
+ 476              	.L38:
+ 477              		.align	2
+ 478              	.L37:
+ 479 0010 00080140 		.word	1073809408
+ 480              		.cfi_endproc
+ 481              	.LFE71:
+ 483              		.section	.text.DisableSeg2,"ax",%progbits
+ 484              		.align	1
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 11
+
+
+ 485              		.global	DisableSeg2
+ 486              		.syntax unified
+ 487              		.thumb
+ 488              		.thumb_func
+ 490              	DisableSeg2:
+ 491              	.LFB72:
+  74:Core/Src/seg_controlling.c **** void DisableSeg2()
+  75:Core/Src/seg_controlling.c **** {
+ 492              		.loc 1 75 1 is_stmt 1 view -0
+ 493              		.cfi_startproc
+ 494              		@ args = 0, pretend = 0, frame = 0
+ 495              		@ frame_needed = 0, uses_anonymous_args = 0
+ 496 0000 08B5     		push	{r3, lr}
+ 497              	.LCFI10:
+ 498              		.cfi_def_cfa_offset 8
+ 499              		.cfi_offset 3, -8
+ 500              		.cfi_offset 14, -4
+  76:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 1);
+ 501              		.loc 1 76 3 view .LVU65
+ 502 0002 0122     		movs	r2, #1
+ 503 0004 4FF40041 		mov	r1, #32768
+ 504 0008 0148     		ldr	r0, .L41
+ 505 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 506              	.LVL47:
+  77:Core/Src/seg_controlling.c **** }
+ 507              		.loc 1 77 1 is_stmt 0 view .LVU66
+ 508 000e 08BD     		pop	{r3, pc}
+ 509              	.L42:
+ 510              		.align	2
+ 511              	.L41:
+ 512 0010 00080140 		.word	1073809408
+ 513              		.cfi_endproc
+ 514              	.LFE72:
+ 516              		.section	.text.EnableSeg3,"ax",%progbits
+ 517              		.align	1
+ 518              		.global	EnableSeg3
+ 519              		.syntax unified
+ 520              		.thumb
+ 521              		.thumb_func
+ 523              	EnableSeg3:
+ 524              	.LFB73:
+  78:Core/Src/seg_controlling.c **** void EnableSeg3()
+  79:Core/Src/seg_controlling.c **** {
+ 525              		.loc 1 79 1 is_stmt 1 view -0
+ 526              		.cfi_startproc
+ 527              		@ args = 0, pretend = 0, frame = 0
+ 528              		@ frame_needed = 0, uses_anonymous_args = 0
+ 529 0000 08B5     		push	{r3, lr}
+ 530              	.LCFI11:
+ 531              		.cfi_def_cfa_offset 8
+ 532              		.cfi_offset 3, -8
+ 533              		.cfi_offset 14, -4
+  80:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, 0);
+ 534              		.loc 1 80 3 view .LVU68
+ 535 0002 0022     		movs	r2, #0
+ 536 0004 4FF48051 		mov	r1, #4096
+ 537 0008 0148     		ldr	r0, .L45
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 12
+
+
+ 538 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 539              	.LVL48:
+  81:Core/Src/seg_controlling.c **** }
+ 540              		.loc 1 81 1 is_stmt 0 view .LVU69
+ 541 000e 08BD     		pop	{r3, pc}
+ 542              	.L46:
+ 543              		.align	2
+ 544              	.L45:
+ 545 0010 00080140 		.word	1073809408
+ 546              		.cfi_endproc
+ 547              	.LFE73:
+ 549              		.section	.text.DisableSeg3,"ax",%progbits
+ 550              		.align	1
+ 551              		.global	DisableSeg3
+ 552              		.syntax unified
+ 553              		.thumb
+ 554              		.thumb_func
+ 556              	DisableSeg3:
+ 557              	.LFB74:
+  82:Core/Src/seg_controlling.c **** void DisableSeg3()
+  83:Core/Src/seg_controlling.c **** {
+ 558              		.loc 1 83 1 is_stmt 1 view -0
+ 559              		.cfi_startproc
+ 560              		@ args = 0, pretend = 0, frame = 0
+ 561              		@ frame_needed = 0, uses_anonymous_args = 0
+ 562 0000 08B5     		push	{r3, lr}
+ 563              	.LCFI12:
+ 564              		.cfi_def_cfa_offset 8
+ 565              		.cfi_offset 3, -8
+ 566              		.cfi_offset 14, -4
+  84:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, 1);
+ 567              		.loc 1 84 3 view .LVU71
+ 568 0002 0122     		movs	r2, #1
+ 569 0004 4FF48051 		mov	r1, #4096
+ 570 0008 0148     		ldr	r0, .L49
+ 571 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 572              	.LVL49:
+  85:Core/Src/seg_controlling.c **** }
+ 573              		.loc 1 85 1 is_stmt 0 view .LVU72
+ 574 000e 08BD     		pop	{r3, pc}
+ 575              	.L50:
+ 576              		.align	2
+ 577              	.L49:
+ 578 0010 00080140 		.word	1073809408
+ 579              		.cfi_endproc
+ 580              	.LFE74:
+ 582              		.section	.text.TurnAllLightOff,"ax",%progbits
+ 583              		.align	1
+ 584              		.global	TurnAllLightOff
+ 585              		.syntax unified
+ 586              		.thumb
+ 587              		.thumb_func
+ 589              	TurnAllLightOff:
+ 590              	.LFB75:
+  86:Core/Src/seg_controlling.c **** 
+  87:Core/Src/seg_controlling.c **** void TurnAllLightOff()
+  88:Core/Src/seg_controlling.c **** {
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 13
+
+
+ 591              		.loc 1 88 1 is_stmt 1 view -0
+ 592              		.cfi_startproc
+ 593              		@ args = 0, pretend = 0, frame = 0
+ 594              		@ frame_needed = 0, uses_anonymous_args = 0
+ 595 0000 10B5     		push	{r4, lr}
+ 596              	.LCFI13:
+ 597              		.cfi_def_cfa_offset 8
+ 598              		.cfi_offset 4, -8
+ 599              		.cfi_offset 14, -4
+  89:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(RED0_GPIO_Port, RED0_Pin, 1);
+ 600              		.loc 1 89 3 view .LVU74
+ 601 0002 214C     		ldr	r4, .L53
+ 602 0004 0122     		movs	r2, #1
+ 603 0006 1146     		mov	r1, r2
+ 604 0008 2046     		mov	r0, r4
+ 605 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 606              	.LVL50:
+  90:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, 1);
+ 607              		.loc 1 90 3 view .LVU75
+ 608 000e 0122     		movs	r2, #1
+ 609 0010 0221     		movs	r1, #2
+ 610 0012 2046     		mov	r0, r4
+ 611 0014 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 612              	.LVL51:
+  91:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, 1);
+ 613              		.loc 1 91 3 view .LVU76
+ 614 0018 0122     		movs	r2, #1
+ 615 001a 0421     		movs	r1, #4
+ 616 001c 2046     		mov	r0, r4
+ 617 001e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 618              	.LVL52:
+  92:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(RED3_GPIO_Port, RED3_Pin, 1);
+ 619              		.loc 1 92 3 view .LVU77
+ 620 0022 0122     		movs	r2, #1
+ 621 0024 0821     		movs	r1, #8
+ 622 0026 2046     		mov	r0, r4
+ 623 0028 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 624              	.LVL53:
+  93:Core/Src/seg_controlling.c **** 
+  94:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(YEL0_GPIO_Port, YEL0_Pin, 1);
+ 625              		.loc 1 94 3 view .LVU78
+ 626 002c 0122     		movs	r2, #1
+ 627 002e 1021     		movs	r1, #16
+ 628 0030 2046     		mov	r0, r4
+ 629 0032 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 630              	.LVL54:
+  95:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(YEL1_GPIO_Port, YEL1_Pin, 1);
+ 631              		.loc 1 95 3 view .LVU79
+ 632 0036 0122     		movs	r2, #1
+ 633 0038 2021     		movs	r1, #32
+ 634 003a 2046     		mov	r0, r4
+ 635 003c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 636              	.LVL55:
+  96:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(YEL2_GPIO_Port, YEL2_Pin, 1);
+ 637              		.loc 1 96 3 view .LVU80
+ 638 0040 0122     		movs	r2, #1
+ 639 0042 4021     		movs	r1, #64
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 14
+
+
+ 640 0044 2046     		mov	r0, r4
+ 641 0046 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 642              	.LVL56:
+  97:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(YEL3_GPIO_Port, YEL3_Pin, 1);
+ 643              		.loc 1 97 3 view .LVU81
+ 644 004a 0122     		movs	r2, #1
+ 645 004c 8021     		movs	r1, #128
+ 646 004e 2046     		mov	r0, r4
+ 647 0050 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 648              	.LVL57:
+  98:Core/Src/seg_controlling.c **** 
+  99:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(GRN0_GPIO_Port, GRN0_Pin, 1);
+ 649              		.loc 1 99 3 view .LVU82
+ 650 0054 0122     		movs	r2, #1
+ 651 0056 4FF48071 		mov	r1, #256
+ 652 005a 2046     		mov	r0, r4
+ 653 005c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 654              	.LVL58:
+ 100:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(GRN1_GPIO_Port, GRN1_Pin, 1);
+ 655              		.loc 1 100 3 view .LVU83
+ 656 0060 0122     		movs	r2, #1
+ 657 0062 4FF40071 		mov	r1, #512
+ 658 0066 2046     		mov	r0, r4
+ 659 0068 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 660              	.LVL59:
+ 101:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(GRN2_GPIO_Port, GRN2_Pin, 1);
+ 661              		.loc 1 101 3 view .LVU84
+ 662 006c 0122     		movs	r2, #1
+ 663 006e 4FF48061 		mov	r1, #1024
+ 664 0072 2046     		mov	r0, r4
+ 665 0074 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 666              	.LVL60:
+ 102:Core/Src/seg_controlling.c ****   HAL_GPIO_WritePin(GRN3_GPIO_Port, GRN3_Pin, 1);
+ 667              		.loc 1 102 3 view .LVU85
+ 668 0078 0122     		movs	r2, #1
+ 669 007a 4FF40061 		mov	r1, #2048
+ 670 007e 2046     		mov	r0, r4
+ 671 0080 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 672              	.LVL61:
+ 103:Core/Src/seg_controlling.c **** }...
+ 673              		.loc 1 103 1 is_stmt 0 view .LVU86
+ 674 0084 10BD     		pop	{r4, pc}
+ 675              	.L54:
+ 676 0086 00BF     		.align	2
+ 677              	.L53:
+ 678 0088 00080140 		.word	1073809408
+ 679              		.cfi_endproc
+ 680              	.LFE75:
+ 682              		.text
+ 683              	.Letext0:
+ 684              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 685              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 686              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h"
+ 687              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ARM GAS  C:\Users\james\AppData\Local\Temp\cciehPok.s 			page 15
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 seg_controlling.c
+C:\Users\james\AppData\Local\Temp\cciehPok.s:18     .text.DisplayNum:00000000 $t
+C:\Users\james\AppData\Local\Temp\cciehPok.s:24     .text.DisplayNum:00000000 DisplayNum
+C:\Users\james\AppData\Local\Temp\cciehPok.s:101    .text.DisplayNum:00000058 $d
+C:\Users\james\AppData\Local\Temp\cciehPok.s:106    .text.display7SEG:00000000 $t
+C:\Users\james\AppData\Local\Temp\cciehPok.s:112    .text.display7SEG:00000000 display7SEG
+C:\Users\james\AppData\Local\Temp\cciehPok.s:132    .text.display7SEG:0000000c $d
+C:\Users\james\AppData\Local\Temp\cciehPok.s:142    .text.display7SEG:00000016 $t
+C:\Users\james\AppData\Local\Temp\cciehPok.s:319    .text.EnableSeg0:00000000 $t
+C:\Users\james\AppData\Local\Temp\cciehPok.s:325    .text.EnableSeg0:00000000 EnableSeg0
+C:\Users\james\AppData\Local\Temp\cciehPok.s:347    .text.EnableSeg0:00000010 $d
+C:\Users\james\AppData\Local\Temp\cciehPok.s:352    .text.DisableSeg0:00000000 $t
+C:\Users\james\AppData\Local\Temp\cciehPok.s:358    .text.DisableSeg0:00000000 DisableSeg0
+C:\Users\james\AppData\Local\Temp\cciehPok.s:380    .text.DisableSeg0:00000010 $d
+C:\Users\james\AppData\Local\Temp\cciehPok.s:385    .text.EnableSeg1:00000000 $t
+C:\Users\james\AppData\Local\Temp\cciehPok.s:391    .text.EnableSeg1:00000000 EnableSeg1
+C:\Users\james\AppData\Local\Temp\cciehPok.s:413    .text.EnableSeg1:00000010 $d
+C:\Users\james\AppData\Local\Temp\cciehPok.s:418    .text.DisableSeg1:00000000 $t
+C:\Users\james\AppData\Local\Temp\cciehPok.s:424    .text.DisableSeg1:00000000 DisableSeg1
+C:\Users\james\AppData\Local\Temp\cciehPok.s:446    .text.DisableSeg1:00000010 $d
+C:\Users\james\AppData\Local\Temp\cciehPok.s:451    .text.EnableSeg2:00000000 $t
+C:\Users\james\AppData\Local\Temp\cciehPok.s:457    .text.EnableSeg2:00000000 EnableSeg2
+C:\Users\james\AppData\Local\Temp\cciehPok.s:479    .text.EnableSeg2:00000010 $d
+C:\Users\james\AppData\Local\Temp\cciehPok.s:484    .text.DisableSeg2:00000000 $t
+C:\Users\james\AppData\Local\Temp\cciehPok.s:490    .text.DisableSeg2:00000000 DisableSeg2
+C:\Users\james\AppData\Local\Temp\cciehPok.s:512    .text.DisableSeg2:00000010 $d
+C:\Users\james\AppData\Local\Temp\cciehPok.s:517    .text.EnableSeg3:00000000 $t
+C:\Users\james\AppData\Local\Temp\cciehPok.s:523    .text.EnableSeg3:00000000 EnableSeg3
+C:\Users\james\AppData\Local\Temp\cciehPok.s:545    .text.EnableSeg3:00000010 $d
+C:\Users\james\AppData\Local\Temp\cciehPok.s:550    .text.DisableSeg3:00000000 $t
+C:\Users\james\AppData\Local\Temp\cciehPok.s:556    .text.DisableSeg3:00000000 DisableSeg3
+C:\Users\james\AppData\Local\Temp\cciehPok.s:578    .text.DisableSeg3:00000010 $d
+C:\Users\james\AppData\Local\Temp\cciehPok.s:583    .text.TurnAllLightOff:00000000 $t
+C:\Users\james\AppData\Local\Temp\cciehPok.s:589    .text.TurnAllLightOff:00000000 TurnAllLightOff
+C:\Users\james\AppData\Local\Temp\cciehPok.s:678    .text.TurnAllLightOff:00000088 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin

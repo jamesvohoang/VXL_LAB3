@@ -1,0 +1,1229 @@
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"led_controlling.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.DisplayNum,"ax",%progbits
+  18              		.align	1
+  19              		.global	DisplayNum
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	DisplayNum:
+  25              	.LVL0:
+  26              	.LFB65:
+  27              		.file 1 "Core/Src/led_controlling.c"
+   1:Core/Src/led_controlling.c **** #include "led_controlling.h"
+   2:Core/Src/led_controlling.c **** 
+   3:Core/Src/led_controlling.c **** void DisplayNum(uint8_t a, uint8_t b, uint8_t c, uint8_t d, uint8_t e, uint8_t f, uint8_t g )
+   4:Core/Src/led_controlling.c **** {
+  28              		.loc 1 4 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 12, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 4 1 is_stmt 0 view .LVU1
+  33 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 24
+  36              		.cfi_offset 3, -24
+  37              		.cfi_offset 4, -20
+  38              		.cfi_offset 5, -16
+  39              		.cfi_offset 6, -12
+  40              		.cfi_offset 7, -8
+  41              		.cfi_offset 14, -4
+  42 0002 0F46     		mov	r7, r1
+  43 0004 1646     		mov	r6, r2
+  44 0006 1D46     		mov	r5, r3
+   5:Core/Src/led_controlling.c ****     HAL_GPIO_WritePin(SEG0_GPIO_Port, SEG0_Pin, a);
+  45              		.loc 1 5 5 is_stmt 1 view .LVU2
+  46 0008 134C     		ldr	r4, .L3
+  47 000a 0246     		mov	r2, r0
+  48              	.LVL1:
+  49              		.loc 1 5 5 is_stmt 0 view .LVU3
+  50 000c 0121     		movs	r1, #1
+  51              	.LVL2:
+  52              		.loc 1 5 5 view .LVU4
+  53 000e 2046     		mov	r0, r4
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 2
+
+
+  54              	.LVL3:
+  55              		.loc 1 5 5 view .LVU5
+  56 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  57              	.LVL4:
+   6:Core/Src/led_controlling.c ****     HAL_GPIO_WritePin(SEG1_GPIO_Port, SEG1_Pin, b);
+  58              		.loc 1 6 5 is_stmt 1 view .LVU6
+  59 0014 3A46     		mov	r2, r7
+  60 0016 0221     		movs	r1, #2
+  61 0018 2046     		mov	r0, r4
+  62 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  63              	.LVL5:
+   7:Core/Src/led_controlling.c ****     HAL_GPIO_WritePin(SEG2_GPIO_Port, SEG2_Pin, c);
+  64              		.loc 1 7 5 view .LVU7
+  65 001e 3246     		mov	r2, r6
+  66 0020 0421     		movs	r1, #4
+  67 0022 2046     		mov	r0, r4
+  68 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  69              	.LVL6:
+   8:Core/Src/led_controlling.c ****     HAL_GPIO_WritePin(SEG3_GPIO_Port, SEG3_Pin, d);
+  70              		.loc 1 8 5 view .LVU8
+  71 0028 2A46     		mov	r2, r5
+  72 002a 0821     		movs	r1, #8
+  73 002c 2046     		mov	r0, r4
+  74 002e FFF7FEFF 		bl	HAL_GPIO_WritePin
+  75              	.LVL7:
+   9:Core/Src/led_controlling.c ****     HAL_GPIO_WritePin(SEG4_GPIO_Port, SEG4_Pin, e);
+  76              		.loc 1 9 5 view .LVU9
+  77 0032 9DF81820 		ldrb	r2, [sp, #24]	@ zero_extendqisi2
+  78 0036 1021     		movs	r1, #16
+  79 0038 2046     		mov	r0, r4
+  80 003a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  81              	.LVL8:
+  10:Core/Src/led_controlling.c ****     HAL_GPIO_WritePin(SEG5_GPIO_Port, SEG5_Pin, f);
+  82              		.loc 1 10 5 view .LVU10
+  83 003e 9DF81C20 		ldrb	r2, [sp, #28]	@ zero_extendqisi2
+  84 0042 2021     		movs	r1, #32
+  85 0044 2046     		mov	r0, r4
+  86 0046 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  87              	.LVL9:
+  11:Core/Src/led_controlling.c ****     HAL_GPIO_WritePin(SEG6_GPIO_Port, SEG6_Pin, g);
+  88              		.loc 1 11 5 view .LVU11
+  89 004a 9DF82020 		ldrb	r2, [sp, #32]	@ zero_extendqisi2
+  90 004e 4021     		movs	r1, #64
+  91 0050 2046     		mov	r0, r4
+  92 0052 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  93              	.LVL10:
+  12:Core/Src/led_controlling.c **** }
+  94              		.loc 1 12 1 is_stmt 0 view .LVU12
+  95 0056 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+  96              	.LVL11:
+  97              	.L4:
+  98              		.loc 1 12 1 view .LVU13
+  99              		.align	2
+ 100              	.L3:
+ 101 0058 000C0140 		.word	1073810432
+ 102              		.cfi_endproc
+ 103              	.LFE65:
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 3
+
+
+ 105              		.section	.text.display7SEG,"ax",%progbits
+ 106              		.align	1
+ 107              		.global	display7SEG
+ 108              		.syntax unified
+ 109              		.thumb
+ 110              		.thumb_func
+ 112              	display7SEG:
+ 113              	.LVL12:
+ 114              	.LFB66:
+  13:Core/Src/led_controlling.c **** 
+  14:Core/Src/led_controlling.c **** void display7SEG(int num)
+  15:Core/Src/led_controlling.c **** {
+ 115              		.loc 1 15 1 is_stmt 1 view -0
+ 116              		.cfi_startproc
+ 117              		@ args = 0, pretend = 0, frame = 0
+ 118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 119              		.loc 1 15 1 is_stmt 0 view .LVU15
+ 120 0000 00B5     		push	{lr}
+ 121              	.LCFI1:
+ 122              		.cfi_def_cfa_offset 4
+ 123              		.cfi_offset 14, -4
+ 124 0002 85B0     		sub	sp, sp, #20
+ 125              	.LCFI2:
+ 126              		.cfi_def_cfa_offset 24
+  16:Core/Src/led_controlling.c ****   switch (num)
+ 127              		.loc 1 16 3 is_stmt 1 view .LVU16
+ 128 0004 0928     		cmp	r0, #9
+ 129 0006 10D8     		bhi	.L5
+ 130 0008 DFE800F0 		tbb	[pc, r0]
+ 131              	.L8:
+ 132 000c 05       		.byte	(.L17-.L8)/2
+ 133 000d 12       		.byte	(.L16-.L8)/2
+ 134 000e 1C       		.byte	(.L15-.L8)/2
+ 135 000f 26       		.byte	(.L14-.L8)/2
+ 136 0010 31       		.byte	(.L13-.L8)/2
+ 137 0011 3B       		.byte	(.L12-.L8)/2
+ 138 0012 45       		.byte	(.L11-.L8)/2
+ 139 0013 4F       		.byte	(.L10-.L8)/2
+ 140 0014 59       		.byte	(.L9-.L8)/2
+ 141 0015 63       		.byte	(.L7-.L8)/2
+ 142              		.p2align 1
+ 143              	.L17:
+  17:Core/Src/led_controlling.c ****   {
+  18:Core/Src/led_controlling.c ****   case 0:
+  19:Core/Src/led_controlling.c ****     DisplayNum(0, 0, 0, 0, 0, 0, 1);
+ 144              		.loc 1 19 5 view .LVU17
+ 145 0016 0123     		movs	r3, #1
+ 146 0018 0293     		str	r3, [sp, #8]
+ 147 001a 0020     		movs	r0, #0
+ 148              	.LVL13:
+ 149              		.loc 1 19 5 is_stmt 0 view .LVU18
+ 150 001c 0190     		str	r0, [sp, #4]
+ 151 001e 0090     		str	r0, [sp]
+ 152 0020 0346     		mov	r3, r0
+ 153 0022 0246     		mov	r2, r0
+ 154 0024 0146     		mov	r1, r0
+ 155 0026 FFF7FEFF 		bl	DisplayNum
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 4
+
+
+ 156              	.LVL14:
+  20:Core/Src/led_controlling.c ****     break;
+ 157              		.loc 1 20 5 is_stmt 1 view .LVU19
+ 158              	.L5:
+  21:Core/Src/led_controlling.c ****   case 1:
+  22:Core/Src/led_controlling.c ****     DisplayNum(1, 0, 0, 1, 1, 1, 1);
+  23:Core/Src/led_controlling.c ****     break;
+  24:Core/Src/led_controlling.c ****   case 2:
+  25:Core/Src/led_controlling.c ****     DisplayNum(0, 0, 1, 0, 0, 1, 0);
+  26:Core/Src/led_controlling.c ****     break;
+  27:Core/Src/led_controlling.c ****   case 3:
+  28:Core/Src/led_controlling.c ****     DisplayNum(0, 0, 0, 0, 1, 1, 0);
+  29:Core/Src/led_controlling.c ****     break;
+  30:Core/Src/led_controlling.c ****   case 4:
+  31:Core/Src/led_controlling.c ****     DisplayNum(1, 0, 0, 1, 1, 0, 0);
+  32:Core/Src/led_controlling.c ****     break;
+  33:Core/Src/led_controlling.c ****   case 5:
+  34:Core/Src/led_controlling.c ****     DisplayNum(0, 1, 0, 0, 1, 0, 0);
+  35:Core/Src/led_controlling.c ****     break;
+  36:Core/Src/led_controlling.c ****   case 6:
+  37:Core/Src/led_controlling.c ****     DisplayNum(0, 1, 0, 0, 0, 0, 0);
+  38:Core/Src/led_controlling.c ****     break;
+  39:Core/Src/led_controlling.c ****   case 7:
+  40:Core/Src/led_controlling.c ****     DisplayNum(0, 0, 0, 1, 1, 1, 1);
+  41:Core/Src/led_controlling.c ****     break;
+  42:Core/Src/led_controlling.c ****   case 8:
+  43:Core/Src/led_controlling.c ****     DisplayNum(0, 0, 0, 0, 0, 0, 0);
+  44:Core/Src/led_controlling.c ****     break;
+  45:Core/Src/led_controlling.c ****   case 9:
+  46:Core/Src/led_controlling.c ****     DisplayNum(0, 0, 0, 0, 1, 0, 0);
+  47:Core/Src/led_controlling.c ****     break;
+  48:Core/Src/led_controlling.c ****   
+  49:Core/Src/led_controlling.c ****   default:
+  50:Core/Src/led_controlling.c ****     break;
+  51:Core/Src/led_controlling.c ****   }
+  52:Core/Src/led_controlling.c **** }
+ 159              		.loc 1 52 1 is_stmt 0 view .LVU20
+ 160 002a 05B0     		add	sp, sp, #20
+ 161              	.LCFI3:
+ 162              		.cfi_remember_state
+ 163              		.cfi_def_cfa_offset 4
+ 164              		@ sp needed
+ 165 002c 5DF804FB 		ldr	pc, [sp], #4
+ 166              	.LVL15:
+ 167              	.L16:
+ 168              	.LCFI4:
+ 169              		.cfi_restore_state
+  22:Core/Src/led_controlling.c ****     break;
+ 170              		.loc 1 22 5 is_stmt 1 view .LVU21
+ 171 0030 0120     		movs	r0, #1
+ 172              	.LVL16:
+  22:Core/Src/led_controlling.c ****     break;
+ 173              		.loc 1 22 5 is_stmt 0 view .LVU22
+ 174 0032 0290     		str	r0, [sp, #8]
+ 175 0034 0190     		str	r0, [sp, #4]
+ 176 0036 0090     		str	r0, [sp]
+ 177 0038 0346     		mov	r3, r0
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 5
+
+
+ 178 003a 0022     		movs	r2, #0
+ 179 003c 1146     		mov	r1, r2
+ 180 003e FFF7FEFF 		bl	DisplayNum
+ 181              	.LVL17:
+  23:Core/Src/led_controlling.c ****   case 2:
+ 182              		.loc 1 23 5 is_stmt 1 view .LVU23
+ 183 0042 F2E7     		b	.L5
+ 184              	.LVL18:
+ 185              	.L15:
+  25:Core/Src/led_controlling.c ****     break;
+ 186              		.loc 1 25 5 view .LVU24
+ 187 0044 0020     		movs	r0, #0
+ 188              	.LVL19:
+  25:Core/Src/led_controlling.c ****     break;
+ 189              		.loc 1 25 5 is_stmt 0 view .LVU25
+ 190 0046 0290     		str	r0, [sp, #8]
+ 191 0048 0122     		movs	r2, #1
+ 192 004a 0192     		str	r2, [sp, #4]
+ 193 004c 0090     		str	r0, [sp]
+ 194 004e 0346     		mov	r3, r0
+ 195 0050 0146     		mov	r1, r0
+ 196 0052 FFF7FEFF 		bl	DisplayNum
+ 197              	.LVL20:
+  26:Core/Src/led_controlling.c ****   case 3:
+ 198              		.loc 1 26 5 is_stmt 1 view .LVU26
+ 199 0056 E8E7     		b	.L5
+ 200              	.LVL21:
+ 201              	.L14:
+  28:Core/Src/led_controlling.c ****     break;
+ 202              		.loc 1 28 5 view .LVU27
+ 203 0058 0020     		movs	r0, #0
+ 204              	.LVL22:
+  28:Core/Src/led_controlling.c ****     break;
+ 205              		.loc 1 28 5 is_stmt 0 view .LVU28
+ 206 005a 0290     		str	r0, [sp, #8]
+ 207 005c 0123     		movs	r3, #1
+ 208 005e 0193     		str	r3, [sp, #4]
+ 209 0060 0093     		str	r3, [sp]
+ 210 0062 0346     		mov	r3, r0
+ 211 0064 0246     		mov	r2, r0
+ 212 0066 0146     		mov	r1, r0
+ 213 0068 FFF7FEFF 		bl	DisplayNum
+ 214              	.LVL23:
+  29:Core/Src/led_controlling.c ****   case 4:
+ 215              		.loc 1 29 5 is_stmt 1 view .LVU29
+ 216 006c DDE7     		b	.L5
+ 217              	.LVL24:
+ 218              	.L13:
+  31:Core/Src/led_controlling.c ****     break;
+ 219              		.loc 1 31 5 view .LVU30
+ 220 006e 0021     		movs	r1, #0
+ 221 0070 0291     		str	r1, [sp, #8]
+ 222 0072 0191     		str	r1, [sp, #4]
+ 223 0074 0120     		movs	r0, #1
+ 224              	.LVL25:
+  31:Core/Src/led_controlling.c ****     break;
+ 225              		.loc 1 31 5 is_stmt 0 view .LVU31
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 6
+
+
+ 226 0076 0090     		str	r0, [sp]
+ 227 0078 0346     		mov	r3, r0
+ 228 007a 0A46     		mov	r2, r1
+ 229 007c FFF7FEFF 		bl	DisplayNum
+ 230              	.LVL26:
+  32:Core/Src/led_controlling.c ****   case 5:
+ 231              		.loc 1 32 5 is_stmt 1 view .LVU32
+ 232 0080 D3E7     		b	.L5
+ 233              	.LVL27:
+ 234              	.L12:
+  34:Core/Src/led_controlling.c ****     break;
+ 235              		.loc 1 34 5 view .LVU33
+ 236 0082 0020     		movs	r0, #0
+ 237              	.LVL28:
+  34:Core/Src/led_controlling.c ****     break;
+ 238              		.loc 1 34 5 is_stmt 0 view .LVU34
+ 239 0084 0290     		str	r0, [sp, #8]
+ 240 0086 0190     		str	r0, [sp, #4]
+ 241 0088 0121     		movs	r1, #1
+ 242 008a 0091     		str	r1, [sp]
+ 243 008c 0346     		mov	r3, r0
+ 244 008e 0246     		mov	r2, r0
+ 245 0090 FFF7FEFF 		bl	DisplayNum
+ 246              	.LVL29:
+  35:Core/Src/led_controlling.c ****   case 6:
+ 247              		.loc 1 35 5 is_stmt 1 view .LVU35
+ 248 0094 C9E7     		b	.L5
+ 249              	.LVL30:
+ 250              	.L11:
+  37:Core/Src/led_controlling.c ****     break;
+ 251              		.loc 1 37 5 view .LVU36
+ 252 0096 0020     		movs	r0, #0
+ 253              	.LVL31:
+  37:Core/Src/led_controlling.c ****     break;
+ 254              		.loc 1 37 5 is_stmt 0 view .LVU37
+ 255 0098 0290     		str	r0, [sp, #8]
+ 256 009a 0190     		str	r0, [sp, #4]
+ 257 009c 0090     		str	r0, [sp]
+ 258 009e 0346     		mov	r3, r0
+ 259 00a0 0246     		mov	r2, r0
+ 260 00a2 0121     		movs	r1, #1
+ 261 00a4 FFF7FEFF 		bl	DisplayNum
+ 262              	.LVL32:
+  38:Core/Src/led_controlling.c ****   case 7:
+ 263              		.loc 1 38 5 is_stmt 1 view .LVU38
+ 264 00a8 BFE7     		b	.L5
+ 265              	.LVL33:
+ 266              	.L10:
+  40:Core/Src/led_controlling.c ****     break;
+ 267              		.loc 1 40 5 view .LVU39
+ 268 00aa 0123     		movs	r3, #1
+ 269 00ac 0293     		str	r3, [sp, #8]
+ 270 00ae 0193     		str	r3, [sp, #4]
+ 271 00b0 0093     		str	r3, [sp]
+ 272 00b2 0022     		movs	r2, #0
+ 273 00b4 1146     		mov	r1, r2
+ 274 00b6 1046     		mov	r0, r2
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 7
+
+
+ 275              	.LVL34:
+  40:Core/Src/led_controlling.c ****     break;
+ 276              		.loc 1 40 5 is_stmt 0 view .LVU40
+ 277 00b8 FFF7FEFF 		bl	DisplayNum
+ 278              	.LVL35:
+  41:Core/Src/led_controlling.c ****   case 8:
+ 279              		.loc 1 41 5 is_stmt 1 view .LVU41
+ 280 00bc B5E7     		b	.L5
+ 281              	.LVL36:
+ 282              	.L9:
+  43:Core/Src/led_controlling.c ****     break;
+ 283              		.loc 1 43 5 view .LVU42
+ 284 00be 0020     		movs	r0, #0
+ 285              	.LVL37:
+  43:Core/Src/led_controlling.c ****     break;
+ 286              		.loc 1 43 5 is_stmt 0 view .LVU43
+ 287 00c0 0290     		str	r0, [sp, #8]
+ 288 00c2 0190     		str	r0, [sp, #4]
+ 289 00c4 0090     		str	r0, [sp]
+ 290 00c6 0346     		mov	r3, r0
+ 291 00c8 0246     		mov	r2, r0
+ 292 00ca 0146     		mov	r1, r0
+ 293 00cc FFF7FEFF 		bl	DisplayNum
+ 294              	.LVL38:
+  44:Core/Src/led_controlling.c ****   case 9:
+ 295              		.loc 1 44 5 is_stmt 1 view .LVU44
+ 296 00d0 ABE7     		b	.L5
+ 297              	.LVL39:
+ 298              	.L7:
+  46:Core/Src/led_controlling.c ****     break;
+ 299              		.loc 1 46 5 view .LVU45
+ 300 00d2 0020     		movs	r0, #0
+ 301              	.LVL40:
+  46:Core/Src/led_controlling.c ****     break;
+ 302              		.loc 1 46 5 is_stmt 0 view .LVU46
+ 303 00d4 0290     		str	r0, [sp, #8]
+ 304 00d6 0190     		str	r0, [sp, #4]
+ 305 00d8 0123     		movs	r3, #1
+ 306 00da 0093     		str	r3, [sp]
+ 307 00dc 0346     		mov	r3, r0
+ 308 00de 0246     		mov	r2, r0
+ 309 00e0 0146     		mov	r1, r0
+ 310 00e2 FFF7FEFF 		bl	DisplayNum
+ 311              	.LVL41:
+  47:Core/Src/led_controlling.c ****   
+ 312              		.loc 1 47 5 is_stmt 1 view .LVU47
+ 313              		.loc 1 52 1 is_stmt 0 view .LVU48
+ 314 00e6 A0E7     		b	.L5
+ 315              		.cfi_endproc
+ 316              	.LFE66:
+ 318              		.section	.text.EnableSeg0,"ax",%progbits
+ 319              		.align	1
+ 320              		.global	EnableSeg0
+ 321              		.syntax unified
+ 322              		.thumb
+ 323              		.thumb_func
+ 325              	EnableSeg0:
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 8
+
+
+ 326              	.LFB67:
+  53:Core/Src/led_controlling.c **** 
+  54:Core/Src/led_controlling.c **** void EnableSeg0()
+  55:Core/Src/led_controlling.c **** {
+ 327              		.loc 1 55 1 is_stmt 1 view -0
+ 328              		.cfi_startproc
+ 329              		@ args = 0, pretend = 0, frame = 0
+ 330              		@ frame_needed = 0, uses_anonymous_args = 0
+ 331 0000 08B5     		push	{r3, lr}
+ 332              	.LCFI5:
+ 333              		.cfi_def_cfa_offset 8
+ 334              		.cfi_offset 3, -8
+ 335              		.cfi_offset 14, -4
+  56:Core/Src/led_controlling.c ****   HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, 0);
+ 336              		.loc 1 56 3 view .LVU50
+ 337 0002 0022     		movs	r2, #0
+ 338 0004 4FF40051 		mov	r1, #8192
+ 339 0008 0148     		ldr	r0, .L21
+ 340 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 341              	.LVL42:
+  57:Core/Src/led_controlling.c **** }
+ 342              		.loc 1 57 1 is_stmt 0 view .LVU51
+ 343 000e 08BD     		pop	{r3, pc}
+ 344              	.L22:
+ 345              		.align	2
+ 346              	.L21:
+ 347 0010 00080140 		.word	1073809408
+ 348              		.cfi_endproc
+ 349              	.LFE67:
+ 351              		.section	.text.DisableSeg0,"ax",%progbits
+ 352              		.align	1
+ 353              		.global	DisableSeg0
+ 354              		.syntax unified
+ 355              		.thumb
+ 356              		.thumb_func
+ 358              	DisableSeg0:
+ 359              	.LFB68:
+  58:Core/Src/led_controlling.c **** void DisableSeg0()
+  59:Core/Src/led_controlling.c **** {
+ 360              		.loc 1 59 1 is_stmt 1 view -0
+ 361              		.cfi_startproc
+ 362              		@ args = 0, pretend = 0, frame = 0
+ 363              		@ frame_needed = 0, uses_anonymous_args = 0
+ 364 0000 08B5     		push	{r3, lr}
+ 365              	.LCFI6:
+ 366              		.cfi_def_cfa_offset 8
+ 367              		.cfi_offset 3, -8
+ 368              		.cfi_offset 14, -4
+  60:Core/Src/led_controlling.c ****   HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, 1);
+ 369              		.loc 1 60 3 view .LVU53
+ 370 0002 0122     		movs	r2, #1
+ 371 0004 4FF40051 		mov	r1, #8192
+ 372 0008 0148     		ldr	r0, .L25
+ 373 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 374              	.LVL43:
+  61:Core/Src/led_controlling.c **** }
+ 375              		.loc 1 61 1 is_stmt 0 view .LVU54
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 9
+
+
+ 376 000e 08BD     		pop	{r3, pc}
+ 377              	.L26:
+ 378              		.align	2
+ 379              	.L25:
+ 380 0010 00080140 		.word	1073809408
+ 381              		.cfi_endproc
+ 382              	.LFE68:
+ 384              		.section	.text.EnableSeg1,"ax",%progbits
+ 385              		.align	1
+ 386              		.global	EnableSeg1
+ 387              		.syntax unified
+ 388              		.thumb
+ 389              		.thumb_func
+ 391              	EnableSeg1:
+ 392              	.LFB69:
+  62:Core/Src/led_controlling.c **** void EnableSeg1()
+  63:Core/Src/led_controlling.c **** {
+ 393              		.loc 1 63 1 is_stmt 1 view -0
+ 394              		.cfi_startproc
+ 395              		@ args = 0, pretend = 0, frame = 0
+ 396              		@ frame_needed = 0, uses_anonymous_args = 0
+ 397 0000 08B5     		push	{r3, lr}
+ 398              	.LCFI7:
+ 399              		.cfi_def_cfa_offset 8
+ 400              		.cfi_offset 3, -8
+ 401              		.cfi_offset 14, -4
+  64:Core/Src/led_controlling.c ****   HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 0);
+ 402              		.loc 1 64 3 view .LVU56
+ 403 0002 0022     		movs	r2, #0
+ 404 0004 4FF48041 		mov	r1, #16384
+ 405 0008 0148     		ldr	r0, .L29
+ 406 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 407              	.LVL44:
+  65:Core/Src/led_controlling.c **** }
+ 408              		.loc 1 65 1 is_stmt 0 view .LVU57
+ 409 000e 08BD     		pop	{r3, pc}
+ 410              	.L30:
+ 411              		.align	2
+ 412              	.L29:
+ 413 0010 00080140 		.word	1073809408
+ 414              		.cfi_endproc
+ 415              	.LFE69:
+ 417              		.section	.text.DisableSeg1,"ax",%progbits
+ 418              		.align	1
+ 419              		.global	DisableSeg1
+ 420              		.syntax unified
+ 421              		.thumb
+ 422              		.thumb_func
+ 424              	DisableSeg1:
+ 425              	.LFB70:
+  66:Core/Src/led_controlling.c **** void DisableSeg1()
+  67:Core/Src/led_controlling.c **** {
+ 426              		.loc 1 67 1 is_stmt 1 view -0
+ 427              		.cfi_startproc
+ 428              		@ args = 0, pretend = 0, frame = 0
+ 429              		@ frame_needed = 0, uses_anonymous_args = 0
+ 430 0000 08B5     		push	{r3, lr}
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 10
+
+
+ 431              	.LCFI8:
+ 432              		.cfi_def_cfa_offset 8
+ 433              		.cfi_offset 3, -8
+ 434              		.cfi_offset 14, -4
+  68:Core/Src/led_controlling.c ****   HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 1);
+ 435              		.loc 1 68 3 view .LVU59
+ 436 0002 0122     		movs	r2, #1
+ 437 0004 4FF48041 		mov	r1, #16384
+ 438 0008 0148     		ldr	r0, .L33
+ 439 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 440              	.LVL45:
+  69:Core/Src/led_controlling.c **** }
+ 441              		.loc 1 69 1 is_stmt 0 view .LVU60
+ 442 000e 08BD     		pop	{r3, pc}
+ 443              	.L34:
+ 444              		.align	2
+ 445              	.L33:
+ 446 0010 00080140 		.word	1073809408
+ 447              		.cfi_endproc
+ 448              	.LFE70:
+ 450              		.section	.text.EnableSeg2,"ax",%progbits
+ 451              		.align	1
+ 452              		.global	EnableSeg2
+ 453              		.syntax unified
+ 454              		.thumb
+ 455              		.thumb_func
+ 457              	EnableSeg2:
+ 458              	.LFB71:
+  70:Core/Src/led_controlling.c **** void EnableSeg2()
+  71:Core/Src/led_controlling.c **** {
+ 459              		.loc 1 71 1 is_stmt 1 view -0
+ 460              		.cfi_startproc
+ 461              		@ args = 0, pretend = 0, frame = 0
+ 462              		@ frame_needed = 0, uses_anonymous_args = 0
+ 463 0000 08B5     		push	{r3, lr}
+ 464              	.LCFI9:
+ 465              		.cfi_def_cfa_offset 8
+ 466              		.cfi_offset 3, -8
+ 467              		.cfi_offset 14, -4
+  72:Core/Src/led_controlling.c ****   HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 0);
+ 468              		.loc 1 72 3 view .LVU62
+ 469 0002 0022     		movs	r2, #0
+ 470 0004 4FF40041 		mov	r1, #32768
+ 471 0008 0148     		ldr	r0, .L37
+ 472 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 473              	.LVL46:
+  73:Core/Src/led_controlling.c **** }
+ 474              		.loc 1 73 1 is_stmt 0 view .LVU63
+ 475 000e 08BD     		pop	{r3, pc}
+ 476              	.L38:
+ 477              		.align	2
+ 478              	.L37:
+ 479 0010 00080140 		.word	1073809408
+ 480              		.cfi_endproc
+ 481              	.LFE71:
+ 483              		.section	.text.DisableSeg2,"ax",%progbits
+ 484              		.align	1
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 11
+
+
+ 485              		.global	DisableSeg2
+ 486              		.syntax unified
+ 487              		.thumb
+ 488              		.thumb_func
+ 490              	DisableSeg2:
+ 491              	.LFB72:
+  74:Core/Src/led_controlling.c **** void DisableSeg2()
+  75:Core/Src/led_controlling.c **** {
+ 492              		.loc 1 75 1 is_stmt 1 view -0
+ 493              		.cfi_startproc
+ 494              		@ args = 0, pretend = 0, frame = 0
+ 495              		@ frame_needed = 0, uses_anonymous_args = 0
+ 496 0000 08B5     		push	{r3, lr}
+ 497              	.LCFI10:
+ 498              		.cfi_def_cfa_offset 8
+ 499              		.cfi_offset 3, -8
+ 500              		.cfi_offset 14, -4
+  76:Core/Src/led_controlling.c ****   HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 1);
+ 501              		.loc 1 76 3 view .LVU65
+ 502 0002 0122     		movs	r2, #1
+ 503 0004 4FF40041 		mov	r1, #32768
+ 504 0008 0148     		ldr	r0, .L41
+ 505 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 506              	.LVL47:
+  77:Core/Src/led_controlling.c **** }
+ 507              		.loc 1 77 1 is_stmt 0 view .LVU66
+ 508 000e 08BD     		pop	{r3, pc}
+ 509              	.L42:
+ 510              		.align	2
+ 511              	.L41:
+ 512 0010 00080140 		.word	1073809408
+ 513              		.cfi_endproc
+ 514              	.LFE72:
+ 516              		.section	.text.EnableSeg3,"ax",%progbits
+ 517              		.align	1
+ 518              		.global	EnableSeg3
+ 519              		.syntax unified
+ 520              		.thumb
+ 521              		.thumb_func
+ 523              	EnableSeg3:
+ 524              	.LFB73:
+  78:Core/Src/led_controlling.c **** void EnableSeg3()
+  79:Core/Src/led_controlling.c **** {
+ 525              		.loc 1 79 1 is_stmt 1 view -0
+ 526              		.cfi_startproc
+ 527              		@ args = 0, pretend = 0, frame = 0
+ 528              		@ frame_needed = 0, uses_anonymous_args = 0
+ 529 0000 08B5     		push	{r3, lr}
+ 530              	.LCFI11:
+ 531              		.cfi_def_cfa_offset 8
+ 532              		.cfi_offset 3, -8
+ 533              		.cfi_offset 14, -4
+  80:Core/Src/led_controlling.c ****   HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, 0);
+ 534              		.loc 1 80 3 view .LVU68
+ 535 0002 0022     		movs	r2, #0
+ 536 0004 4FF48051 		mov	r1, #4096
+ 537 0008 0148     		ldr	r0, .L45
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 12
+
+
+ 538 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 539              	.LVL48:
+  81:Core/Src/led_controlling.c **** }
+ 540              		.loc 1 81 1 is_stmt 0 view .LVU69
+ 541 000e 08BD     		pop	{r3, pc}
+ 542              	.L46:
+ 543              		.align	2
+ 544              	.L45:
+ 545 0010 00080140 		.word	1073809408
+ 546              		.cfi_endproc
+ 547              	.LFE73:
+ 549              		.section	.text.DisableSeg3,"ax",%progbits
+ 550              		.align	1
+ 551              		.global	DisableSeg3
+ 552              		.syntax unified
+ 553              		.thumb
+ 554              		.thumb_func
+ 556              	DisableSeg3:
+ 557              	.LFB74:
+  82:Core/Src/led_controlling.c **** void DisableSeg3()
+  83:Core/Src/led_controlling.c **** {
+ 558              		.loc 1 83 1 is_stmt 1 view -0
+ 559              		.cfi_startproc
+ 560              		@ args = 0, pretend = 0, frame = 0
+ 561              		@ frame_needed = 0, uses_anonymous_args = 0
+ 562 0000 08B5     		push	{r3, lr}
+ 563              	.LCFI12:
+ 564              		.cfi_def_cfa_offset 8
+ 565              		.cfi_offset 3, -8
+ 566              		.cfi_offset 14, -4
+  84:Core/Src/led_controlling.c ****   HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, 1);
+ 567              		.loc 1 84 3 view .LVU71
+ 568 0002 0122     		movs	r2, #1
+ 569 0004 4FF48051 		mov	r1, #4096
+ 570 0008 0148     		ldr	r0, .L49
+ 571 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 572              	.LVL49:
+  85:Core/Src/led_controlling.c **** }
+ 573              		.loc 1 85 1 is_stmt 0 view .LVU72
+ 574 000e 08BD     		pop	{r3, pc}
+ 575              	.L50:
+ 576              		.align	2
+ 577              	.L49:
+ 578 0010 00080140 		.word	1073809408
+ 579              		.cfi_endproc
+ 580              	.LFE74:
+ 582              		.section	.text.DisableAllSegs,"ax",%progbits
+ 583              		.align	1
+ 584              		.global	DisableAllSegs
+ 585              		.syntax unified
+ 586              		.thumb
+ 587              		.thumb_func
+ 589              	DisableAllSegs:
+ 590              	.LFB75:
+  86:Core/Src/led_controlling.c **** 
+  87:Core/Src/led_controlling.c **** void DisableAllSegs()
+  88:Core/Src/led_controlling.c **** {
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 13
+
+
+ 591              		.loc 1 88 1 is_stmt 1 view -0
+ 592              		.cfi_startproc
+ 593              		@ args = 0, pretend = 0, frame = 0
+ 594              		@ frame_needed = 0, uses_anonymous_args = 0
+ 595 0000 08B5     		push	{r3, lr}
+ 596              	.LCFI13:
+ 597              		.cfi_def_cfa_offset 8
+ 598              		.cfi_offset 3, -8
+ 599              		.cfi_offset 14, -4
+  89:Core/Src/led_controlling.c ****   DisableSeg0();
+ 600              		.loc 1 89 3 view .LVU74
+ 601 0002 FFF7FEFF 		bl	DisableSeg0
+ 602              	.LVL50:
+  90:Core/Src/led_controlling.c ****   DisableSeg1();
+ 603              		.loc 1 90 3 view .LVU75
+ 604 0006 FFF7FEFF 		bl	DisableSeg1
+ 605              	.LVL51:
+  91:Core/Src/led_controlling.c ****   DisableSeg2();
+ 606              		.loc 1 91 3 view .LVU76
+ 607 000a FFF7FEFF 		bl	DisableSeg2
+ 608              	.LVL52:
+  92:Core/Src/led_controlling.c ****   DisableSeg3();
+ 609              		.loc 1 92 3 view .LVU77
+ 610 000e FFF7FEFF 		bl	DisableSeg3
+ 611              	.LVL53:
+  93:Core/Src/led_controlling.c **** }
+ 612              		.loc 1 93 1 is_stmt 0 view .LVU78
+ 613 0012 08BD     		pop	{r3, pc}
+ 614              		.cfi_endproc
+ 615              	.LFE75:
+ 617              		.section	.text.Enable7SEG,"ax",%progbits
+ 618              		.align	1
+ 619              		.global	Enable7SEG
+ 620              		.syntax unified
+ 621              		.thumb
+ 622              		.thumb_func
+ 624              	Enable7SEG:
+ 625              	.LVL54:
+ 626              	.LFB76:
+  94:Core/Src/led_controlling.c **** 
+  95:Core/Src/led_controlling.c **** void Enable7SEG(uint8_t index)
+  96:Core/Src/led_controlling.c **** {
+ 627              		.loc 1 96 1 is_stmt 1 view -0
+ 628              		.cfi_startproc
+ 629              		@ args = 0, pretend = 0, frame = 0
+ 630              		@ frame_needed = 0, uses_anonymous_args = 0
+ 631              		.loc 1 96 1 is_stmt 0 view .LVU80
+ 632 0000 08B5     		push	{r3, lr}
+ 633              	.LCFI14:
+ 634              		.cfi_def_cfa_offset 8
+ 635              		.cfi_offset 3, -8
+ 636              		.cfi_offset 14, -4
+  97:Core/Src/led_controlling.c ****   switch (index)
+ 637              		.loc 1 97 3 is_stmt 1 view .LVU81
+ 638 0002 0328     		cmp	r0, #3
+ 639 0004 05D8     		bhi	.L53
+ 640 0006 DFE800F0 		tbb	[pc, r0]
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 14
+
+
+ 641              	.L56:
+ 642 000a 02       		.byte	(.L59-.L56)/2
+ 643 000b 05       		.byte	(.L58-.L56)/2
+ 644 000c 08       		.byte	(.L57-.L56)/2
+ 645 000d 0B       		.byte	(.L55-.L56)/2
+ 646              		.p2align 1
+ 647              	.L59:
+  98:Core/Src/led_controlling.c ****   {
+  99:Core/Src/led_controlling.c ****   case 0:
+ 100:Core/Src/led_controlling.c ****     EnableSeg0();
+ 648              		.loc 1 100 5 view .LVU82
+ 649 000e FFF7FEFF 		bl	EnableSeg0
+ 650              	.LVL55:
+ 101:Core/Src/led_controlling.c ****     break;
+ 651              		.loc 1 101 5 view .LVU83
+ 652              	.L53:
+ 102:Core/Src/led_controlling.c ****   case 1:
+ 103:Core/Src/led_controlling.c ****     EnableSeg1();
+ 104:Core/Src/led_controlling.c ****     break;
+ 105:Core/Src/led_controlling.c ****   case 2:
+ 106:Core/Src/led_controlling.c ****     EnableSeg2();
+ 107:Core/Src/led_controlling.c ****     break;
+ 108:Core/Src/led_controlling.c ****   case 3:
+ 109:Core/Src/led_controlling.c ****     EnableSeg3();
+ 110:Core/Src/led_controlling.c ****     break;
+ 111:Core/Src/led_controlling.c ****   
+ 112:Core/Src/led_controlling.c ****   default:
+ 113:Core/Src/led_controlling.c ****     break;
+ 114:Core/Src/led_controlling.c ****   }
+ 115:Core/Src/led_controlling.c **** }
+ 653              		.loc 1 115 1 is_stmt 0 view .LVU84
+ 654 0012 08BD     		pop	{r3, pc}
+ 655              	.LVL56:
+ 656              	.L58:
+ 103:Core/Src/led_controlling.c ****     break;
+ 657              		.loc 1 103 5 is_stmt 1 view .LVU85
+ 658 0014 FFF7FEFF 		bl	EnableSeg1
+ 659              	.LVL57:
+ 104:Core/Src/led_controlling.c ****   case 2:
+ 660              		.loc 1 104 5 view .LVU86
+ 661 0018 FBE7     		b	.L53
+ 662              	.LVL58:
+ 663              	.L57:
+ 106:Core/Src/led_controlling.c ****     break;
+ 664              		.loc 1 106 5 view .LVU87
+ 665 001a FFF7FEFF 		bl	EnableSeg2
+ 666              	.LVL59:
+ 107:Core/Src/led_controlling.c ****   case 3:
+ 667              		.loc 1 107 5 view .LVU88
+ 668 001e F8E7     		b	.L53
+ 669              	.LVL60:
+ 670              	.L55:
+ 109:Core/Src/led_controlling.c ****     break;
+ 671              		.loc 1 109 5 view .LVU89
+ 672 0020 FFF7FEFF 		bl	EnableSeg3
+ 673              	.LVL61:
+ 110:Core/Src/led_controlling.c ****   
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 15
+
+
+ 674              		.loc 1 110 5 view .LVU90
+ 675              		.loc 1 115 1 is_stmt 0 view .LVU91
+ 676 0024 F5E7     		b	.L53
+ 677              		.cfi_endproc
+ 678              	.LFE76:
+ 680              		.section	.text.Disable7SEG,"ax",%progbits
+ 681              		.align	1
+ 682              		.global	Disable7SEG
+ 683              		.syntax unified
+ 684              		.thumb
+ 685              		.thumb_func
+ 687              	Disable7SEG:
+ 688              	.LVL62:
+ 689              	.LFB77:
+ 116:Core/Src/led_controlling.c **** 
+ 117:Core/Src/led_controlling.c **** void Disable7SEG(uint8_t index)
+ 118:Core/Src/led_controlling.c **** {
+ 690              		.loc 1 118 1 is_stmt 1 view -0
+ 691              		.cfi_startproc
+ 692              		@ args = 0, pretend = 0, frame = 0
+ 693              		@ frame_needed = 0, uses_anonymous_args = 0
+ 694              		.loc 1 118 1 is_stmt 0 view .LVU93
+ 695 0000 08B5     		push	{r3, lr}
+ 696              	.LCFI15:
+ 697              		.cfi_def_cfa_offset 8
+ 698              		.cfi_offset 3, -8
+ 699              		.cfi_offset 14, -4
+ 119:Core/Src/led_controlling.c ****   switch (index)
+ 700              		.loc 1 119 3 is_stmt 1 view .LVU94
+ 701 0002 0328     		cmp	r0, #3
+ 702 0004 05D8     		bhi	.L61
+ 703 0006 DFE800F0 		tbb	[pc, r0]
+ 704              	.L64:
+ 705 000a 02       		.byte	(.L67-.L64)/2
+ 706 000b 05       		.byte	(.L66-.L64)/2
+ 707 000c 08       		.byte	(.L65-.L64)/2
+ 708 000d 0B       		.byte	(.L63-.L64)/2
+ 709              		.p2align 1
+ 710              	.L67:
+ 120:Core/Src/led_controlling.c ****   {
+ 121:Core/Src/led_controlling.c ****   case 0:
+ 122:Core/Src/led_controlling.c ****     DisableSeg0();
+ 711              		.loc 1 122 5 view .LVU95
+ 712 000e FFF7FEFF 		bl	DisableSeg0
+ 713              	.LVL63:
+ 123:Core/Src/led_controlling.c ****     break;
+ 714              		.loc 1 123 5 view .LVU96
+ 715              	.L61:
+ 124:Core/Src/led_controlling.c ****   case 1:
+ 125:Core/Src/led_controlling.c ****     DisableSeg1();
+ 126:Core/Src/led_controlling.c ****     break;
+ 127:Core/Src/led_controlling.c ****   case 2:
+ 128:Core/Src/led_controlling.c ****     DisableSeg2();
+ 129:Core/Src/led_controlling.c ****     break;
+ 130:Core/Src/led_controlling.c ****   case 3:
+ 131:Core/Src/led_controlling.c ****     DisableSeg3();
+ 132:Core/Src/led_controlling.c ****     break;
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 16
+
+
+ 133:Core/Src/led_controlling.c ****   
+ 134:Core/Src/led_controlling.c ****   default:
+ 135:Core/Src/led_controlling.c ****     break;
+ 136:Core/Src/led_controlling.c ****   }
+ 137:Core/Src/led_controlling.c **** }
+ 716              		.loc 1 137 1 is_stmt 0 view .LVU97
+ 717 0012 08BD     		pop	{r3, pc}
+ 718              	.LVL64:
+ 719              	.L66:
+ 125:Core/Src/led_controlling.c ****     break;
+ 720              		.loc 1 125 5 is_stmt 1 view .LVU98
+ 721 0014 FFF7FEFF 		bl	DisableSeg1
+ 722              	.LVL65:
+ 126:Core/Src/led_controlling.c ****   case 2:
+ 723              		.loc 1 126 5 view .LVU99
+ 724 0018 FBE7     		b	.L61
+ 725              	.LVL66:
+ 726              	.L65:
+ 128:Core/Src/led_controlling.c ****     break;
+ 727              		.loc 1 128 5 view .LVU100
+ 728 001a FFF7FEFF 		bl	DisableSeg2
+ 729              	.LVL67:
+ 129:Core/Src/led_controlling.c ****   case 3:
+ 730              		.loc 1 129 5 view .LVU101
+ 731 001e F8E7     		b	.L61
+ 732              	.LVL68:
+ 733              	.L63:
+ 131:Core/Src/led_controlling.c ****     break;
+ 734              		.loc 1 131 5 view .LVU102
+ 735 0020 FFF7FEFF 		bl	DisableSeg3
+ 736              	.LVL69:
+ 132:Core/Src/led_controlling.c ****   
+ 737              		.loc 1 132 5 view .LVU103
+ 738              		.loc 1 137 1 is_stmt 0 view .LVU104
+ 739 0024 F5E7     		b	.L61
+ 740              		.cfi_endproc
+ 741              	.LFE77:
+ 743              		.section	.text.TurnAllLightsOff,"ax",%progbits
+ 744              		.align	1
+ 745              		.global	TurnAllLightsOff
+ 746              		.syntax unified
+ 747              		.thumb
+ 748              		.thumb_func
+ 750              	TurnAllLightsOff:
+ 751              	.LFB78:
+ 138:Core/Src/led_controlling.c **** 
+ 139:Core/Src/led_controlling.c **** void TurnAllLightsOff()
+ 140:Core/Src/led_controlling.c **** {
+ 752              		.loc 1 140 1 is_stmt 1 view -0
+ 753              		.cfi_startproc
+ 754              		@ args = 0, pretend = 0, frame = 0
+ 755              		@ frame_needed = 0, uses_anonymous_args = 0
+ 756 0000 10B5     		push	{r4, lr}
+ 757              	.LCFI16:
+ 758              		.cfi_def_cfa_offset 8
+ 759              		.cfi_offset 4, -8
+ 760              		.cfi_offset 14, -4
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 17
+
+
+ 141:Core/Src/led_controlling.c ****   HAL_GPIO_WritePin(RED0_GPIO_Port, RED0_Pin, 1);
+ 761              		.loc 1 141 3 view .LVU106
+ 762 0002 114C     		ldr	r4, .L71
+ 763 0004 0122     		movs	r2, #1
+ 764 0006 1146     		mov	r1, r2
+ 765 0008 2046     		mov	r0, r4
+ 766 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 767              	.LVL70:
+ 142:Core/Src/led_controlling.c ****   HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, 1);
+ 768              		.loc 1 142 3 view .LVU107
+ 769 000e 0122     		movs	r2, #1
+ 770 0010 0221     		movs	r1, #2
+ 771 0012 2046     		mov	r0, r4
+ 772 0014 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 773              	.LVL71:
+ 143:Core/Src/led_controlling.c ****   //HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, 1);
+ 144:Core/Src/led_controlling.c ****   //HAL_GPIO_WritePin(RED3_GPIO_Port, RED3_Pin, 1);
+ 145:Core/Src/led_controlling.c **** 
+ 146:Core/Src/led_controlling.c ****   HAL_GPIO_WritePin(YEL0_GPIO_Port, YEL0_Pin, 1);
+ 774              		.loc 1 146 3 view .LVU108
+ 775 0018 0122     		movs	r2, #1
+ 776 001a 1021     		movs	r1, #16
+ 777 001c 2046     		mov	r0, r4
+ 778 001e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 779              	.LVL72:
+ 147:Core/Src/led_controlling.c ****   HAL_GPIO_WritePin(YEL1_GPIO_Port, YEL1_Pin, 1);
+ 780              		.loc 1 147 3 view .LVU109
+ 781 0022 0122     		movs	r2, #1
+ 782 0024 2021     		movs	r1, #32
+ 783 0026 2046     		mov	r0, r4
+ 784 0028 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 785              	.LVL73:
+ 148:Core/Src/led_controlling.c ****   //HAL_GPIO_WritePin(YEL2_GPIO_Port, YEL2_Pin, 1);
+ 149:Core/Src/led_controlling.c ****   //HAL_GPIO_WritePin(YEL3_GPIO_Port, YEL3_Pin, 1);
+ 150:Core/Src/led_controlling.c **** 
+ 151:Core/Src/led_controlling.c ****   HAL_GPIO_WritePin(GRN0_GPIO_Port, GRN0_Pin, 1);
+ 786              		.loc 1 151 3 view .LVU110
+ 787 002c 0122     		movs	r2, #1
+ 788 002e 4FF48071 		mov	r1, #256
+ 789 0032 2046     		mov	r0, r4
+ 790 0034 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 791              	.LVL74:
+ 152:Core/Src/led_controlling.c ****   HAL_GPIO_WritePin(GRN1_GPIO_Port, GRN1_Pin, 1);
+ 792              		.loc 1 152 3 view .LVU111
+ 793 0038 0122     		movs	r2, #1
+ 794 003a 4FF40071 		mov	r1, #512
+ 795 003e 2046     		mov	r0, r4
+ 796 0040 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 797              	.LVL75:
+ 153:Core/Src/led_controlling.c ****   //HAL_GPIO_WritePin(GRN2_GPIO_Port, GRN2_Pin, 1);
+ 154:Core/Src/led_controlling.c ****   //HAL_GPIO_WritePin(GRN3_GPIO_Port, GRN3_Pin, 1);
+ 155:Core/Src/led_controlling.c **** }
+ 798              		.loc 1 155 1 is_stmt 0 view .LVU112
+ 799 0044 10BD     		pop	{r4, pc}
+ 800              	.L72:
+ 801 0046 00BF     		.align	2
+ 802              	.L71:
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 18
+
+
+ 803 0048 00080140 		.word	1073809408
+ 804              		.cfi_endproc
+ 805              	.LFE78:
+ 807              		.section	.text.ToggleAllRedLeds,"ax",%progbits
+ 808              		.align	1
+ 809              		.global	ToggleAllRedLeds
+ 810              		.syntax unified
+ 811              		.thumb
+ 812              		.thumb_func
+ 814              	ToggleAllRedLeds:
+ 815              	.LFB79:
+ 156:Core/Src/led_controlling.c **** 
+ 157:Core/Src/led_controlling.c **** void ToggleAllRedLeds()
+ 158:Core/Src/led_controlling.c **** {
+ 816              		.loc 1 158 1 is_stmt 1 view -0
+ 817              		.cfi_startproc
+ 818              		@ args = 0, pretend = 0, frame = 0
+ 819              		@ frame_needed = 0, uses_anonymous_args = 0
+ 820 0000 10B5     		push	{r4, lr}
+ 821              	.LCFI17:
+ 822              		.cfi_def_cfa_offset 8
+ 823              		.cfi_offset 4, -8
+ 824              		.cfi_offset 14, -4
+ 159:Core/Src/led_controlling.c ****   HAL_GPIO_TogglePin(RED0_GPIO_Port, RED0_Pin);
+ 825              		.loc 1 159 3 view .LVU114
+ 826 0002 054C     		ldr	r4, .L75
+ 827 0004 0121     		movs	r1, #1
+ 828 0006 2046     		mov	r0, r4
+ 829 0008 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 830              	.LVL76:
+ 160:Core/Src/led_controlling.c ****   HAL_GPIO_TogglePin(RED1_GPIO_Port, RED1_Pin);
+ 831              		.loc 1 160 3 view .LVU115
+ 832 000c 0221     		movs	r1, #2
+ 833 000e 2046     		mov	r0, r4
+ 834 0010 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 835              	.LVL77:
+ 161:Core/Src/led_controlling.c **** }
+ 836              		.loc 1 161 1 is_stmt 0 view .LVU116
+ 837 0014 10BD     		pop	{r4, pc}
+ 838              	.L76:
+ 839 0016 00BF     		.align	2
+ 840              	.L75:
+ 841 0018 00080140 		.word	1073809408
+ 842              		.cfi_endproc
+ 843              	.LFE79:
+ 845              		.section	.text.ToggleAllYellowLeds,"ax",%progbits
+ 846              		.align	1
+ 847              		.global	ToggleAllYellowLeds
+ 848              		.syntax unified
+ 849              		.thumb
+ 850              		.thumb_func
+ 852              	ToggleAllYellowLeds:
+ 853              	.LFB80:
+ 162:Core/Src/led_controlling.c **** 
+ 163:Core/Src/led_controlling.c **** void ToggleAllYellowLeds()
+ 164:Core/Src/led_controlling.c **** {
+ 854              		.loc 1 164 1 is_stmt 1 view -0
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 19
+
+
+ 855              		.cfi_startproc
+ 856              		@ args = 0, pretend = 0, frame = 0
+ 857              		@ frame_needed = 0, uses_anonymous_args = 0
+ 858 0000 10B5     		push	{r4, lr}
+ 859              	.LCFI18:
+ 860              		.cfi_def_cfa_offset 8
+ 861              		.cfi_offset 4, -8
+ 862              		.cfi_offset 14, -4
+ 165:Core/Src/led_controlling.c ****   HAL_GPIO_TogglePin(YEL0_GPIO_Port, YEL0_Pin);
+ 863              		.loc 1 165 3 view .LVU118
+ 864 0002 054C     		ldr	r4, .L79
+ 865 0004 1021     		movs	r1, #16
+ 866 0006 2046     		mov	r0, r4
+ 867 0008 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 868              	.LVL78:
+ 166:Core/Src/led_controlling.c ****   HAL_GPIO_TogglePin(YEL1_GPIO_Port, YEL1_Pin);
+ 869              		.loc 1 166 3 view .LVU119
+ 870 000c 2021     		movs	r1, #32
+ 871 000e 2046     		mov	r0, r4
+ 872 0010 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 873              	.LVL79:
+ 167:Core/Src/led_controlling.c **** }
+ 874              		.loc 1 167 1 is_stmt 0 view .LVU120
+ 875 0014 10BD     		pop	{r4, pc}
+ 876              	.L80:
+ 877 0016 00BF     		.align	2
+ 878              	.L79:
+ 879 0018 00080140 		.word	1073809408
+ 880              		.cfi_endproc
+ 881              	.LFE80:
+ 883              		.section	.text.ToggleAllGreenLeds,"ax",%progbits
+ 884              		.align	1
+ 885              		.global	ToggleAllGreenLeds
+ 886              		.syntax unified
+ 887              		.thumb
+ 888              		.thumb_func
+ 890              	ToggleAllGreenLeds:
+ 891              	.LFB81:
+ 168:Core/Src/led_controlling.c **** 
+ 169:Core/Src/led_controlling.c **** void ToggleAllGreenLeds()
+ 170:Core/Src/led_controlling.c **** {
+ 892              		.loc 1 170 1 is_stmt 1 view -0
+ 893              		.cfi_startproc
+ 894              		@ args = 0, pretend = 0, frame = 0
+ 895              		@ frame_needed = 0, uses_anonymous_args = 0
+ 896 0000 10B5     		push	{r4, lr}
+ 897              	.LCFI19:
+ 898              		.cfi_def_cfa_offset 8
+ 899              		.cfi_offset 4, -8
+ 900              		.cfi_offset 14, -4
+ 171:Core/Src/led_controlling.c ****   HAL_GPIO_TogglePin(GRN0_GPIO_Port, GRN0_Pin);
+ 901              		.loc 1 171 3 view .LVU122
+ 902 0002 064C     		ldr	r4, .L83
+ 903 0004 4FF48071 		mov	r1, #256
+ 904 0008 2046     		mov	r0, r4
+ 905 000a FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 906              	.LVL80:
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 20
+
+
+ 172:Core/Src/led_controlling.c ****   HAL_GPIO_TogglePin(GRN1_GPIO_Port, GRN1_Pin);
+ 907              		.loc 1 172 3 view .LVU123
+ 908 000e 4FF40071 		mov	r1, #512
+ 909 0012 2046     		mov	r0, r4
+ 910 0014 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 911              	.LVL81:
+ 173:Core/Src/led_controlling.c **** }...
+ 912              		.loc 1 173 1 is_stmt 0 view .LVU124
+ 913 0018 10BD     		pop	{r4, pc}
+ 914              	.L84:
+ 915 001a 00BF     		.align	2
+ 916              	.L83:
+ 917 001c 00080140 		.word	1073809408
+ 918              		.cfi_endproc
+ 919              	.LFE81:
+ 921              		.text
+ 922              	.Letext0:
+ 923              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 924              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 925              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h"
+ 926              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 21
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 led_controlling.c
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:18     .text.DisplayNum:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:24     .text.DisplayNum:00000000 DisplayNum
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:101    .text.DisplayNum:00000058 $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:106    .text.display7SEG:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:112    .text.display7SEG:00000000 display7SEG
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:132    .text.display7SEG:0000000c $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:142    .text.display7SEG:00000016 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:319    .text.EnableSeg0:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:325    .text.EnableSeg0:00000000 EnableSeg0
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:347    .text.EnableSeg0:00000010 $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:352    .text.DisableSeg0:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:358    .text.DisableSeg0:00000000 DisableSeg0
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:380    .text.DisableSeg0:00000010 $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:385    .text.EnableSeg1:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:391    .text.EnableSeg1:00000000 EnableSeg1
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:413    .text.EnableSeg1:00000010 $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:418    .text.DisableSeg1:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:424    .text.DisableSeg1:00000000 DisableSeg1
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:446    .text.DisableSeg1:00000010 $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:451    .text.EnableSeg2:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:457    .text.EnableSeg2:00000000 EnableSeg2
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:479    .text.EnableSeg2:00000010 $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:484    .text.DisableSeg2:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:490    .text.DisableSeg2:00000000 DisableSeg2
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:512    .text.DisableSeg2:00000010 $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:517    .text.EnableSeg3:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:523    .text.EnableSeg3:00000000 EnableSeg3
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:545    .text.EnableSeg3:00000010 $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:550    .text.DisableSeg3:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:556    .text.DisableSeg3:00000000 DisableSeg3
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:578    .text.DisableSeg3:00000010 $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:583    .text.DisableAllSegs:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:589    .text.DisableAllSegs:00000000 DisableAllSegs
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:618    .text.Enable7SEG:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:624    .text.Enable7SEG:00000000 Enable7SEG
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:642    .text.Enable7SEG:0000000a $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:646    .text.Enable7SEG:0000000e $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:681    .text.Disable7SEG:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:687    .text.Disable7SEG:00000000 Disable7SEG
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:705    .text.Disable7SEG:0000000a $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:709    .text.Disable7SEG:0000000e $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:744    .text.TurnAllLightsOff:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:750    .text.TurnAllLightsOff:00000000 TurnAllLightsOff
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:803    .text.TurnAllLightsOff:00000048 $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:808    .text.ToggleAllRedLeds:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:814    .text.ToggleAllRedLeds:00000000 ToggleAllRedLeds
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:841    .text.ToggleAllRedLeds:00000018 $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:846    .text.ToggleAllYellowLeds:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:852    .text.ToggleAllYellowLeds:00000000 ToggleAllYellowLeds
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:879    .text.ToggleAllYellowLeds:00000018 $d
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:884    .text.ToggleAllGreenLeds:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:890    .text.ToggleAllGreenLeds:00000000 ToggleAllGreenLeds
+C:\Users\james\AppData\Local\Temp\ccZn8y4T.s:917    .text.ToggleAllGreenLeds:0000001c $d
+
+UNDEFINED SYMBOLS
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccZn8y4T.s 			page 22
+
+
+HAL_GPIO_WritePin
+HAL_GPIO_TogglePin

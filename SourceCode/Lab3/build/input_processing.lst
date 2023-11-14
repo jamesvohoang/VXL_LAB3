@@ -1,0 +1,673 @@
+ARM GAS  C:\Users\james\AppData\Local\Temp\cc6swWnL.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"input_processing.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.IncreaseDurationOfLight,"ax",%progbits
+  18              		.align	1
+  19              		.global	IncreaseDurationOfLight
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	IncreaseDurationOfLight:
+  25              	.LFB65:
+  26              		.file 1 "Core/Src/input_processing.c"
+   1:Core/Src/input_processing.c **** #include "input_processing.h"
+   2:Core/Src/input_processing.c **** 
+   3:Core/Src/input_processing.c **** ButtonState buttonState[N0_OF_BUTTONS] = {BUTTON_RELEASED, };
+   4:Core/Src/input_processing.c **** ModeState modeState = 3;
+   5:Core/Src/input_processing.c **** 
+   6:Core/Src/input_processing.c **** uint8_t durationOfRed = 7;
+   7:Core/Src/input_processing.c **** uint8_t durationOfYellow = 2;
+   8:Core/Src/input_processing.c **** uint8_t durationOfGreen = 5;
+   9:Core/Src/input_processing.c **** 
+  10:Core/Src/input_processing.c **** void IncreaseDurationOfLight()
+  11:Core/Src/input_processing.c **** {
+  27              		.loc 1 11 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  12:Core/Src/input_processing.c ****     switch (modeState)
+  32              		.loc 1 12 5 view .LVU1
+  33 0000 1B4B     		ldr	r3, .L6
+  34 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  35 0004 022B     		cmp	r3, #2
+  36 0006 14D0     		beq	.L2
+  37 0008 032B     		cmp	r3, #3
+  38 000a 21D0     		beq	.L3
+  39 000c 012B     		cmp	r3, #1
+  40 000e 00D0     		beq	.L5
+  41              	.L1:
+  13:Core/Src/input_processing.c ****     {
+  14:Core/Src/input_processing.c ****         case MODIFY_FOR_RED:
+  15:Core/Src/input_processing.c ****             durationOfRed++;
+  16:Core/Src/input_processing.c ****             durationOfGreen++;
+  17:Core/Src/input_processing.c ****             // when increase duration of red or green, we should increase the other to keep logic i
+ARM GAS  C:\Users\james\AppData\Local\Temp\cc6swWnL.s 			page 2
+
+
+  18:Core/Src/input_processing.c ****             if(durationOfRed >= 100)
+  19:Core/Src/input_processing.c ****             {
+  20:Core/Src/input_processing.c ****                 durationOfRed = 0;
+  21:Core/Src/input_processing.c ****                 durationOfGreen = 0;
+  22:Core/Src/input_processing.c ****             }
+  23:Core/Src/input_processing.c ****             break;
+  24:Core/Src/input_processing.c ****         case MODIFY_FOR_YELLOW:
+  25:Core/Src/input_processing.c ****             durationOfYellow++;
+  26:Core/Src/input_processing.c ****             durationOfRed++;
+  27:Core/Src/input_processing.c ****             // this is in oder to keep duration of green + yellow = red.
+  28:Core/Src/input_processing.c ****             if(durationOfYellow >= 100)
+  29:Core/Src/input_processing.c ****                 durationOfYellow = 0;
+  30:Core/Src/input_processing.c ****             break;
+  31:Core/Src/input_processing.c ****         case MODIFY_FOR_GREEN:
+  32:Core/Src/input_processing.c ****             durationOfGreen++;
+  33:Core/Src/input_processing.c ****             durationOfRed++;
+  34:Core/Src/input_processing.c ****             // the same with situation modify red one.
+  35:Core/Src/input_processing.c ****             if(durationOfGreen >= 100)
+  36:Core/Src/input_processing.c ****             {
+  37:Core/Src/input_processing.c ****                 durationOfRed = 0;
+  38:Core/Src/input_processing.c ****                 durationOfGreen = 0;
+  39:Core/Src/input_processing.c ****             }
+  40:Core/Src/input_processing.c ****             break;
+  41:Core/Src/input_processing.c ****         
+  42:Core/Src/input_processing.c ****         default:
+  43:Core/Src/input_processing.c ****             break;
+  44:Core/Src/input_processing.c ****     }
+  45:Core/Src/input_processing.c **** }
+  42              		.loc 1 45 1 is_stmt 0 view .LVU2
+  43 0010 7047     		bx	lr
+  44              	.L5:
+  15:Core/Src/input_processing.c ****             durationOfGreen++;
+  45              		.loc 1 15 13 is_stmt 1 view .LVU3
+  15:Core/Src/input_processing.c ****             durationOfGreen++;
+  46              		.loc 1 15 26 is_stmt 0 view .LVU4
+  47 0012 184A     		ldr	r2, .L6+4
+  48 0014 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  49 0016 0133     		adds	r3, r3, #1
+  50 0018 DBB2     		uxtb	r3, r3
+  51 001a 1370     		strb	r3, [r2]
+  16:Core/Src/input_processing.c ****             // when increase duration of red or green, we should increase the other to keep logic i
+  52              		.loc 1 16 13 is_stmt 1 view .LVU5
+  16:Core/Src/input_processing.c ****             // when increase duration of red or green, we should increase the other to keep logic i
+  53              		.loc 1 16 28 is_stmt 0 view .LVU6
+  54 001c 1649     		ldr	r1, .L6+8
+  55 001e 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+  56 0020 0132     		adds	r2, r2, #1
+  57 0022 0A70     		strb	r2, [r1]
+  18:Core/Src/input_processing.c ****             {
+  58              		.loc 1 18 13 is_stmt 1 view .LVU7
+  18:Core/Src/input_processing.c ****             {
+  59              		.loc 1 18 15 is_stmt 0 view .LVU8
+  60 0024 632B     		cmp	r3, #99
+  61 0026 F3D9     		bls	.L1
+  20:Core/Src/input_processing.c ****                 durationOfGreen = 0;
+  62              		.loc 1 20 17 is_stmt 1 view .LVU9
+  20:Core/Src/input_processing.c ****                 durationOfGreen = 0;
+ARM GAS  C:\Users\james\AppData\Local\Temp\cc6swWnL.s 			page 3
+
+
+  63              		.loc 1 20 31 is_stmt 0 view .LVU10
+  64 0028 0023     		movs	r3, #0
+  65 002a 124A     		ldr	r2, .L6+4
+  66 002c 1370     		strb	r3, [r2]
+  21:Core/Src/input_processing.c ****             }
+  67              		.loc 1 21 17 is_stmt 1 view .LVU11
+  21:Core/Src/input_processing.c ****             }
+  68              		.loc 1 21 33 is_stmt 0 view .LVU12
+  69 002e 0B70     		strb	r3, [r1]
+  70 0030 7047     		bx	lr
+  71              	.L2:
+  25:Core/Src/input_processing.c ****             durationOfRed++;
+  72              		.loc 1 25 13 is_stmt 1 view .LVU13
+  25:Core/Src/input_processing.c ****             durationOfRed++;
+  73              		.loc 1 25 29 is_stmt 0 view .LVU14
+  74 0032 124A     		ldr	r2, .L6+12
+  75 0034 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  76 0036 0133     		adds	r3, r3, #1
+  77 0038 DBB2     		uxtb	r3, r3
+  78 003a 1370     		strb	r3, [r2]
+  26:Core/Src/input_processing.c ****             // this is in oder to keep duration of green + yellow = red.
+  79              		.loc 1 26 13 is_stmt 1 view .LVU15
+  26:Core/Src/input_processing.c ****             // this is in oder to keep duration of green + yellow = red.
+  80              		.loc 1 26 26 is_stmt 0 view .LVU16
+  81 003c 0D49     		ldr	r1, .L6+4
+  82 003e 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+  83 0040 0132     		adds	r2, r2, #1
+  84 0042 0A70     		strb	r2, [r1]
+  28:Core/Src/input_processing.c ****                 durationOfYellow = 0;
+  85              		.loc 1 28 13 is_stmt 1 view .LVU17
+  28:Core/Src/input_processing.c ****                 durationOfYellow = 0;
+  86              		.loc 1 28 15 is_stmt 0 view .LVU18
+  87 0044 632B     		cmp	r3, #99
+  88 0046 E3D9     		bls	.L1
+  29:Core/Src/input_processing.c ****             break;
+  89              		.loc 1 29 17 is_stmt 1 view .LVU19
+  29:Core/Src/input_processing.c ****             break;
+  90              		.loc 1 29 34 is_stmt 0 view .LVU20
+  91 0048 0C4B     		ldr	r3, .L6+12
+  92 004a 0022     		movs	r2, #0
+  93 004c 1A70     		strb	r2, [r3]
+  94 004e 7047     		bx	lr
+  95              	.L3:
+  32:Core/Src/input_processing.c ****             durationOfRed++;
+  96              		.loc 1 32 13 is_stmt 1 view .LVU21
+  32:Core/Src/input_processing.c ****             durationOfRed++;
+  97              		.loc 1 32 28 is_stmt 0 view .LVU22
+  98 0050 094A     		ldr	r2, .L6+8
+  99 0052 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 100 0054 0133     		adds	r3, r3, #1
+ 101 0056 DBB2     		uxtb	r3, r3
+ 102 0058 1370     		strb	r3, [r2]
+  33:Core/Src/input_processing.c ****             // the same with situation modify red one.
+ 103              		.loc 1 33 13 is_stmt 1 view .LVU23
+  33:Core/Src/input_processing.c ****             // the same with situation modify red one.
+ 104              		.loc 1 33 26 is_stmt 0 view .LVU24
+ 105 005a 0649     		ldr	r1, .L6+4
+ARM GAS  C:\Users\james\AppData\Local\Temp\cc6swWnL.s 			page 4
+
+
+ 106 005c 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 107 005e 0132     		adds	r2, r2, #1
+ 108 0060 0A70     		strb	r2, [r1]
+  35:Core/Src/input_processing.c ****             {
+ 109              		.loc 1 35 13 is_stmt 1 view .LVU25
+  35:Core/Src/input_processing.c ****             {
+ 110              		.loc 1 35 15 is_stmt 0 view .LVU26
+ 111 0062 632B     		cmp	r3, #99
+ 112 0064 D4D9     		bls	.L1
+  37:Core/Src/input_processing.c ****                 durationOfGreen = 0;
+ 113              		.loc 1 37 17 is_stmt 1 view .LVU27
+  37:Core/Src/input_processing.c ****                 durationOfGreen = 0;
+ 114              		.loc 1 37 31 is_stmt 0 view .LVU28
+ 115 0066 0023     		movs	r3, #0
+ 116 0068 0B70     		strb	r3, [r1]
+  38:Core/Src/input_processing.c ****             }
+ 117              		.loc 1 38 17 is_stmt 1 view .LVU29
+  38:Core/Src/input_processing.c ****             }
+ 118              		.loc 1 38 33 is_stmt 0 view .LVU30
+ 119 006a 034A     		ldr	r2, .L6+8
+ 120 006c 1370     		strb	r3, [r2]
+ 121              		.loc 1 45 1 view .LVU31
+ 122 006e CFE7     		b	.L1
+ 123              	.L7:
+ 124              		.align	2
+ 125              	.L6:
+ 126 0070 00000000 		.word	.LANCHOR0
+ 127 0074 00000000 		.word	.LANCHOR1
+ 128 0078 00000000 		.word	.LANCHOR2
+ 129 007c 00000000 		.word	.LANCHOR3
+ 130              		.cfi_endproc
+ 131              	.LFE65:
+ 133              		.section	.text.fsm_for_input_processing,"ax",%progbits
+ 134              		.align	1
+ 135              		.global	fsm_for_input_processing
+ 136              		.syntax unified
+ 137              		.thumb
+ 138              		.thumb_func
+ 140              	fsm_for_input_processing:
+ 141              	.LFB66:
+  46:Core/Src/input_processing.c **** 
+  47:Core/Src/input_processing.c **** void fsm_for_input_processing(void)
+  48:Core/Src/input_processing.c **** {
+ 142              		.loc 1 48 1 is_stmt 1 view -0
+ 143              		.cfi_startproc
+ 144              		@ args = 0, pretend = 0, frame = 0
+ 145              		@ frame_needed = 0, uses_anonymous_args = 0
+ 146 0000 08B5     		push	{r3, lr}
+ 147              	.LCFI0:
+ 148              		.cfi_def_cfa_offset 8
+ 149              		.cfi_offset 3, -8
+ 150              		.cfi_offset 14, -4
+  49:Core/Src/input_processing.c **** 	switch(buttonState[0])
+ 151              		.loc 1 49 2 view .LVU33
+ 152              		.loc 1 49 20 is_stmt 0 view .LVU34
+ 153 0002 3D4B     		ldr	r3, .L23
+ 154 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\james\AppData\Local\Temp\cc6swWnL.s 			page 5
+
+
+ 155              		.loc 1 49 2 view .LVU35
+ 156 0006 012B     		cmp	r3, #1
+ 157 0008 1DD0     		beq	.L9
+ 158 000a 022B     		cmp	r3, #2
+ 159 000c 2ED0     		beq	.L10
+ 160 000e 7BB1     		cbz	r3, .L20
+ 161              	.L11:
+  50:Core/Src/input_processing.c ****     {
+  51:Core/Src/input_processing.c ****         case BUTTON_RELEASED:
+  52:Core/Src/input_processing.c ****             if(is_button_pressed(0))
+  53:Core/Src/input_processing.c ****             {
+  54:Core/Src/input_processing.c ****                 buttonState[0] = BUTTON_PRESSED;
+  55:Core/Src/input_processing.c ****                 TurnAllLightsOff();
+  56:Core/Src/input_processing.c ****             }
+  57:Core/Src/input_processing.c ****             break;
+  58:Core/Src/input_processing.c **** 
+  59:Core/Src/input_processing.c ****         case BUTTON_PRESSED:
+  60:Core/Src/input_processing.c ****             if(!is_button_pressed(0))
+  61:Core/Src/input_processing.c ****             {
+  62:Core/Src/input_processing.c ****                 buttonState[0] = BUTTON_RELEASED;
+  63:Core/Src/input_processing.c ****                 // Changing mode
+  64:Core/Src/input_processing.c ****                 modeState++;
+  65:Core/Src/input_processing.c ****                 if(modeState >= 4) 
+  66:Core/Src/input_processing.c ****                     modeState = 0;
+  67:Core/Src/input_processing.c ****             }
+  68:Core/Src/input_processing.c ****             //else 
+  69:Core/Src/input_processing.c ****             //{
+  70:Core/Src/input_processing.c ****             //    if(is_button_pressed_1s(0))
+  71:Core/Src/input_processing.c ****             //    {
+  72:Core/Src/input_processing.c ****             //        buttonState = BUTTON_PRESSED_MORE_THAN_1_SECOND;
+  73:Core/Src/input_processing.c ****             //    }
+  74:Core/Src/input_processing.c ****             //}
+  75:Core/Src/input_processing.c ****             break;
+  76:Core/Src/input_processing.c **** 
+  77:Core/Src/input_processing.c ****         case BUTTON_PRESSED_MORE_THAN_1_SECOND:
+  78:Core/Src/input_processing.c ****             if(!is_button_pressed(0))
+  79:Core/Src/input_processing.c ****             {
+  80:Core/Src/input_processing.c ****                 buttonState[0] = BUTTON_RELEASED;
+  81:Core/Src/input_processing.c ****             }
+  82:Core/Src/input_processing.c ****             //todo
+  83:Core/Src/input_processing.c ****             break;
+  84:Core/Src/input_processing.c **** 	}
+  85:Core/Src/input_processing.c **** 
+  86:Core/Src/input_processing.c ****     switch(buttonState[1])
+ 162              		.loc 1 86 5 is_stmt 1 view .LVU36
+ 163              		.loc 1 86 23 is_stmt 0 view .LVU37
+ 164 0010 394B     		ldr	r3, .L23
+ 165 0012 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 166              		.loc 1 86 5 view .LVU38
+ 167 0014 012B     		cmp	r3, #1
+ 168 0016 3BD0     		beq	.L12
+ 169 0018 022B     		cmp	r3, #2
+ 170 001a 44D0     		beq	.L13
+ 171 001c 7BB3     		cbz	r3, .L21
+ 172              	.L14:
+  87:Core/Src/input_processing.c ****     {
+  88:Core/Src/input_processing.c ****         case BUTTON_RELEASED:
+ARM GAS  C:\Users\james\AppData\Local\Temp\cc6swWnL.s 			page 6
+
+
+  89:Core/Src/input_processing.c ****             if(is_button_pressed(1))
+  90:Core/Src/input_processing.c ****             {
+  91:Core/Src/input_processing.c ****                 buttonState[1] = BUTTON_PRESSED;
+  92:Core/Src/input_processing.c ****             }
+  93:Core/Src/input_processing.c ****             break;
+  94:Core/Src/input_processing.c **** 
+  95:Core/Src/input_processing.c ****         case BUTTON_PRESSED:
+  96:Core/Src/input_processing.c ****             if(!is_button_pressed(1))
+  97:Core/Src/input_processing.c ****             {
+  98:Core/Src/input_processing.c ****                 buttonState[1] = BUTTON_RELEASED;
+  99:Core/Src/input_processing.c ****                 IncreaseDurationOfLight();
+ 100:Core/Src/input_processing.c ****             }
+ 101:Core/Src/input_processing.c ****             break;
+ 102:Core/Src/input_processing.c **** 
+ 103:Core/Src/input_processing.c ****         case BUTTON_PRESSED_MORE_THAN_1_SECOND:
+ 104:Core/Src/input_processing.c ****             if(!is_button_pressed(1))
+ 105:Core/Src/input_processing.c ****             {
+ 106:Core/Src/input_processing.c ****                 buttonState[1] = BUTTON_RELEASED;
+ 107:Core/Src/input_processing.c ****             }
+ 108:Core/Src/input_processing.c ****             //todo
+ 109:Core/Src/input_processing.c ****             IncreaseDurationOfLight();
+ 110:Core/Src/input_processing.c ****             break;
+ 111:Core/Src/input_processing.c **** 	}
+ 112:Core/Src/input_processing.c **** 
+ 113:Core/Src/input_processing.c ****     switch(buttonState[2])
+ 173              		.loc 1 113 5 is_stmt 1 view .LVU39
+ 174              		.loc 1 113 23 is_stmt 0 view .LVU40
+ 175 001e 364B     		ldr	r3, .L23
+ 176 0020 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 177              		.loc 1 113 5 view .LVU41
+ 178 0022 012B     		cmp	r3, #1
+ 179 0024 52D0     		beq	.L16
+ 180 0026 022B     		cmp	r3, #2
+ 181 0028 5BD0     		beq	.L17
+ 182 002a 002B     		cmp	r3, #0
+ 183 002c 45D0     		beq	.L22
+ 184              	.L8:
+ 114:Core/Src/input_processing.c ****     {
+ 115:Core/Src/input_processing.c ****         case BUTTON_RELEASED:
+ 116:Core/Src/input_processing.c ****             if(is_button_pressed(2))
+ 117:Core/Src/input_processing.c ****             {
+ 118:Core/Src/input_processing.c ****                 buttonState[2] = BUTTON_PRESSED;
+ 119:Core/Src/input_processing.c ****             }
+ 120:Core/Src/input_processing.c ****             break;
+ 121:Core/Src/input_processing.c **** 
+ 122:Core/Src/input_processing.c ****         case BUTTON_PRESSED:
+ 123:Core/Src/input_processing.c ****             if(!is_button_pressed(2))
+ 124:Core/Src/input_processing.c ****             {
+ 125:Core/Src/input_processing.c ****                 buttonState[2] = BUTTON_RELEASED;
+ 126:Core/Src/input_processing.c ****                 modeState = 0;
+ 127:Core/Src/input_processing.c ****             }
+ 128:Core/Src/input_processing.c ****             break;
+ 129:Core/Src/input_processing.c **** 
+ 130:Core/Src/input_processing.c ****         case BUTTON_PRESSED_MORE_THAN_1_SECOND:
+ 131:Core/Src/input_processing.c ****             if(!is_button_pressed(2))
+ 132:Core/Src/input_processing.c ****             {
+ 133:Core/Src/input_processing.c ****                 buttonState[2] = BUTTON_RELEASED;
+ARM GAS  C:\Users\james\AppData\Local\Temp\cc6swWnL.s 			page 7
+
+
+ 134:Core/Src/input_processing.c ****                 modeState = 0;
+ 135:Core/Src/input_processing.c ****             }
+ 136:Core/Src/input_processing.c ****             //todo
+ 137:Core/Src/input_processing.c ****             break;
+ 138:Core/Src/input_processing.c **** 	}
+ 139:Core/Src/input_processing.c **** }...
+ 185              		.loc 1 139 1 view .LVU42
+ 186 002e 08BD     		pop	{r3, pc}
+ 187              	.L20:
+  52:Core/Src/input_processing.c ****             if(is_button_pressed(0))
+ 188              		.loc 1 52 13 is_stmt 1 view .LVU43
+  52:Core/Src/input_processing.c ****             if(is_button_pressed(0))
+ 189              		.loc 1 52 16 is_stmt 0 view .LVU44
+ 190 0030 0020     		movs	r0, #0
+ 191 0032 FFF7FEFF 		bl	is_button_pressed
+ 192              	.LVL0:
+  52:Core/Src/input_processing.c ****             if(is_button_pressed(0))
+ 193              		.loc 1 52 15 view .LVU45
+ 194 0036 0028     		cmp	r0, #0
+ 195 0038 EAD0     		beq	.L11
+  54:Core/Src/input_processing.c ****                 buttonState[0] = BUTTON_PRESSED;
+ 196              		.loc 1 54 17 is_stmt 1 view .LVU46
+  54:Core/Src/input_processing.c ****                 buttonState[0] = BUTTON_PRESSED;
+ 197              		.loc 1 54 32 is_stmt 0 view .LVU47
+ 198 003a 2F4B     		ldr	r3, .L23
+ 199 003c 0122     		movs	r2, #1
+ 200 003e 1A70     		strb	r2, [r3]
+  55:Core/Src/input_processing.c ****                 TurnAllLightsOff();
+ 201              		.loc 1 55 17 is_stmt 1 view .LVU48
+ 202 0040 FFF7FEFF 		bl	TurnAllLightsOff
+ 203              	.LVL1:
+ 204 0044 E4E7     		b	.L11
+ 205              	.L9:
+  60:Core/Src/input_processing.c ****             if(!is_button_pressed(0))
+ 206              		.loc 1 60 13 view .LVU49
+  60:Core/Src/input_processing.c ****             if(!is_button_pressed(0))
+ 207              		.loc 1 60 17 is_stmt 0 view .LVU50
+ 208 0046 0020     		movs	r0, #0
+ 209 0048 FFF7FEFF 		bl	is_button_pressed
+ 210              	.LVL2:
+  60:Core/Src/input_processing.c ****             if(!is_button_pressed(0))
+ 211              		.loc 1 60 15 view .LVU51
+ 212 004c 0028     		cmp	r0, #0
+ 213 004e DFD1     		bne	.L11
+  62:Core/Src/input_processing.c ****                 buttonState[0] = BUTTON_RELEASED;
+ 214              		.loc 1 62 17 is_stmt 1 view .LVU52
+  62:Core/Src/input_processing.c ****                 buttonState[0] = BUTTON_RELEASED;
+ 215              		.loc 1 62 32 is_stmt 0 view .LVU53
+ 216 0050 294B     		ldr	r3, .L23
+ 217 0052 0022     		movs	r2, #0
+ 218 0054 1A70     		strb	r2, [r3]
+  64:Core/Src/input_processing.c ****                 modeState++;
+ 219              		.loc 1 64 17 is_stmt 1 view .LVU54
+  64:Core/Src/input_processing.c ****                 modeState++;
+ 220              		.loc 1 64 26 is_stmt 0 view .LVU55
+ 221 0056 294A     		ldr	r2, .L23+4
+ 222 0058 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ARM GAS  C:\Users\james\AppData\Local\Temp\cc6swWnL.s 			page 8
+
+
+ 223 005a 0133     		adds	r3, r3, #1
+ 224 005c DBB2     		uxtb	r3, r3
+ 225 005e 1370     		strb	r3, [r2]
+  65:Core/Src/input_processing.c ****                 if(modeState >= 4) 
+ 226              		.loc 1 65 17 is_stmt 1 view .LVU56
+  65:Core/Src/input_processing.c ****                 if(modeState >= 4) 
+ 227              		.loc 1 65 19 is_stmt 0 view .LVU57
+ 228 0060 032B     		cmp	r3, #3
+ 229 0062 D5D9     		bls	.L11
+  66:Core/Src/input_processing.c ****                     modeState = 0;
+ 230              		.loc 1 66 21 is_stmt 1 view .LVU58
+  66:Core/Src/input_processing.c ****                     modeState = 0;
+ 231              		.loc 1 66 31 is_stmt 0 view .LVU59
+ 232 0064 1346     		mov	r3, r2
+ 233 0066 0022     		movs	r2, #0
+ 234 0068 1A70     		strb	r2, [r3]
+ 235 006a D1E7     		b	.L11
+ 236              	.L10:
+  78:Core/Src/input_processing.c ****             if(!is_button_pressed(0))
+ 237              		.loc 1 78 13 is_stmt 1 view .LVU60
+  78:Core/Src/input_processing.c ****             if(!is_button_pressed(0))
+ 238              		.loc 1 78 17 is_stmt 0 view .LVU61
+ 239 006c 0020     		movs	r0, #0
+ 240 006e FFF7FEFF 		bl	is_button_pressed
+ 241              	.LVL3:
+  78:Core/Src/input_processing.c ****             if(!is_button_pressed(0))
+ 242              		.loc 1 78 15 view .LVU62
+ 243 0072 0028     		cmp	r0, #0
+ 244 0074 CCD1     		bne	.L11
+  80:Core/Src/input_processing.c ****                 buttonState[0] = BUTTON_RELEASED;
+ 245              		.loc 1 80 17 is_stmt 1 view .LVU63
+  80:Core/Src/input_processing.c ****                 buttonState[0] = BUTTON_RELEASED;
+ 246              		.loc 1 80 32 is_stmt 0 view .LVU64
+ 247 0076 204B     		ldr	r3, .L23
+ 248 0078 0022     		movs	r2, #0
+ 249 007a 1A70     		strb	r2, [r3]
+ 250 007c C8E7     		b	.L11
+ 251              	.L21:
+  89:Core/Src/input_processing.c ****             if(is_button_pressed(1))
+ 252              		.loc 1 89 13 is_stmt 1 view .LVU65
+  89:Core/Src/input_processing.c ****             if(is_button_pressed(1))
+ 253              		.loc 1 89 16 is_stmt 0 view .LVU66
+ 254 007e 0120     		movs	r0, #1
+ 255 0080 FFF7FEFF 		bl	is_button_pressed
+ 256              	.LVL4:
+  89:Core/Src/input_processing.c ****             if(is_button_pressed(1))
+ 257              		.loc 1 89 15 view .LVU67
+ 258 0084 0028     		cmp	r0, #0
+ 259 0086 CAD0     		beq	.L14
+  91:Core/Src/input_processing.c ****                 buttonState[1] = BUTTON_PRESSED;
+ 260              		.loc 1 91 17 is_stmt 1 view .LVU68
+  91:Core/Src/input_processing.c ****                 buttonState[1] = BUTTON_PRESSED;
+ 261              		.loc 1 91 32 is_stmt 0 view .LVU69
+ 262 0088 1B4B     		ldr	r3, .L23
+ 263 008a 0122     		movs	r2, #1
+ 264 008c 5A70     		strb	r2, [r3, #1]
+ 265 008e C6E7     		b	.L14
+ARM GAS  C:\Users\james\AppData\Local\Temp\cc6swWnL.s 			page 9
+
+
+ 266              	.L12:
+  96:Core/Src/input_processing.c ****             if(!is_button_pressed(1))
+ 267              		.loc 1 96 13 is_stmt 1 view .LVU70
+  96:Core/Src/input_processing.c ****             if(!is_button_pressed(1))
+ 268              		.loc 1 96 17 is_stmt 0 view .LVU71
+ 269 0090 0120     		movs	r0, #1
+ 270 0092 FFF7FEFF 		bl	is_button_pressed
+ 271              	.LVL5:
+  96:Core/Src/input_processing.c ****             if(!is_button_pressed(1))
+ 272              		.loc 1 96 15 view .LVU72
+ 273 0096 0028     		cmp	r0, #0
+ 274 0098 C1D1     		bne	.L14
+  98:Core/Src/input_processing.c ****                 buttonState[1] = BUTTON_RELEASED;
+ 275              		.loc 1 98 17 is_stmt 1 view .LVU73
+  98:Core/Src/input_processing.c ****                 buttonState[1] = BUTTON_RELEASED;
+ 276              		.loc 1 98 32 is_stmt 0 view .LVU74
+ 277 009a 174B     		ldr	r3, .L23
+ 278 009c 0022     		movs	r2, #0
+ 279 009e 5A70     		strb	r2, [r3, #1]
+  99:Core/Src/input_processing.c ****                 IncreaseDurationOfLight();
+ 280              		.loc 1 99 17 is_stmt 1 view .LVU75
+ 281 00a0 FFF7FEFF 		bl	IncreaseDurationOfLight
+ 282              	.LVL6:
+ 283 00a4 BBE7     		b	.L14
+ 284              	.L13:
+ 104:Core/Src/input_processing.c ****             if(!is_button_pressed(1))
+ 285              		.loc 1 104 13 view .LVU76
+ 104:Core/Src/input_processing.c ****             if(!is_button_pressed(1))
+ 286              		.loc 1 104 17 is_stmt 0 view .LVU77
+ 287 00a6 0120     		movs	r0, #1
+ 288 00a8 FFF7FEFF 		bl	is_button_pressed
+ 289              	.LVL7:
+ 104:Core/Src/input_processing.c ****             if(!is_button_pressed(1))
+ 290              		.loc 1 104 15 view .LVU78
+ 291 00ac 10B9     		cbnz	r0, .L15
+ 106:Core/Src/input_processing.c ****                 buttonState[1] = BUTTON_RELEASED;
+ 292              		.loc 1 106 17 is_stmt 1 view .LVU79
+ 106:Core/Src/input_processing.c ****                 buttonState[1] = BUTTON_RELEASED;
+ 293              		.loc 1 106 32 is_stmt 0 view .LVU80
+ 294 00ae 124B     		ldr	r3, .L23
+ 295 00b0 0022     		movs	r2, #0
+ 296 00b2 5A70     		strb	r2, [r3, #1]
+ 297              	.L15:
+ 109:Core/Src/input_processing.c ****             IncreaseDurationOfLight();
+ 298              		.loc 1 109 13 is_stmt 1 view .LVU81
+ 299 00b4 FFF7FEFF 		bl	IncreaseDurationOfLight
+ 300              	.LVL8:
+ 110:Core/Src/input_processing.c ****             break;
+ 301              		.loc 1 110 13 view .LVU82
+ 302 00b8 B1E7     		b	.L14
+ 303              	.L22:
+ 116:Core/Src/input_processing.c ****             if(is_button_pressed(2))
+ 304              		.loc 1 116 13 view .LVU83
+ 116:Core/Src/input_processing.c ****             if(is_button_pressed(2))
+ 305              		.loc 1 116 16 is_stmt 0 view .LVU84
+ 306 00ba 0220     		movs	r0, #2
+ 307 00bc FFF7FEFF 		bl	is_button_pressed
+ARM GAS  C:\Users\james\AppData\Local\Temp\cc6swWnL.s 			page 10
+
+
+ 308              	.LVL9:
+ 116:Core/Src/input_processing.c ****             if(is_button_pressed(2))
+ 309              		.loc 1 116 15 view .LVU85
+ 310 00c0 0028     		cmp	r0, #0
+ 311 00c2 B4D0     		beq	.L8
+ 118:Core/Src/input_processing.c ****                 buttonState[2] = BUTTON_PRESSED;
+ 312              		.loc 1 118 17 is_stmt 1 view .LVU86
+ 118:Core/Src/input_processing.c ****                 buttonState[2] = BUTTON_PRESSED;
+ 313              		.loc 1 118 32 is_stmt 0 view .LVU87
+ 314 00c4 0C4B     		ldr	r3, .L23
+ 315 00c6 0122     		movs	r2, #1
+ 316 00c8 9A70     		strb	r2, [r3, #2]
+ 317 00ca B0E7     		b	.L8
+ 318              	.L16:
+ 123:Core/Src/input_processing.c ****             if(!is_button_pressed(2))
+ 319              		.loc 1 123 13 is_stmt 1 view .LVU88
+ 123:Core/Src/input_processing.c ****             if(!is_button_pressed(2))
+ 320              		.loc 1 123 17 is_stmt 0 view .LVU89
+ 321 00cc 0220     		movs	r0, #2
+ 322 00ce FFF7FEFF 		bl	is_button_pressed
+ 323              	.LVL10:
+ 123:Core/Src/input_processing.c ****             if(!is_button_pressed(2))
+ 324              		.loc 1 123 15 view .LVU90
+ 325 00d2 0028     		cmp	r0, #0
+ 326 00d4 ABD1     		bne	.L8
+ 125:Core/Src/input_processing.c ****                 buttonState[2] = BUTTON_RELEASED;
+ 327              		.loc 1 125 17 is_stmt 1 view .LVU91
+ 125:Core/Src/input_processing.c ****                 buttonState[2] = BUTTON_RELEASED;
+ 328              		.loc 1 125 32 is_stmt 0 view .LVU92
+ 329 00d6 0023     		movs	r3, #0
+ 330 00d8 074A     		ldr	r2, .L23
+ 331 00da 9370     		strb	r3, [r2, #2]
+ 126:Core/Src/input_processing.c ****                 modeState = 0;
+ 332              		.loc 1 126 17 is_stmt 1 view .LVU93
+ 126:Core/Src/input_processing.c ****                 modeState = 0;
+ 333              		.loc 1 126 27 is_stmt 0 view .LVU94
+ 334 00dc 074A     		ldr	r2, .L23+4
+ 335 00de 1370     		strb	r3, [r2]
+ 336 00e0 A5E7     		b	.L8
+ 337              	.L17:
+ 131:Core/Src/input_processing.c ****             if(!is_button_pressed(2))
+ 338              		.loc 1 131 13 is_stmt 1 view .LVU95
+ 131:Core/Src/input_processing.c ****             if(!is_button_pressed(2))
+ 339              		.loc 1 131 17 is_stmt 0 view .LVU96
+ 340 00e2 0220     		movs	r0, #2
+ 341 00e4 FFF7FEFF 		bl	is_button_pressed
+ 342              	.LVL11:
+ 131:Core/Src/input_processing.c ****             if(!is_button_pressed(2))
+ 343              		.loc 1 131 15 view .LVU97
+ 344 00e8 0028     		cmp	r0, #0
+ 345 00ea A0D1     		bne	.L8
+ 133:Core/Src/input_processing.c ****                 buttonState[2] = BUTTON_RELEASED;
+ 346              		.loc 1 133 17 is_stmt 1 view .LVU98
+ 133:Core/Src/input_processing.c ****                 buttonState[2] = BUTTON_RELEASED;
+ 347              		.loc 1 133 32 is_stmt 0 view .LVU99
+ 348 00ec 0023     		movs	r3, #0
+ 349 00ee 024A     		ldr	r2, .L23
+ARM GAS  C:\Users\james\AppData\Local\Temp\cc6swWnL.s 			page 11
+
+
+ 350 00f0 9370     		strb	r3, [r2, #2]
+ 134:Core/Src/input_processing.c ****                 modeState = 0;
+ 351              		.loc 1 134 17 is_stmt 1 view .LVU100
+ 134:Core/Src/input_processing.c ****                 modeState = 0;
+ 352              		.loc 1 134 27 is_stmt 0 view .LVU101
+ 353 00f2 024A     		ldr	r2, .L23+4
+ 354 00f4 1370     		strb	r3, [r2]
+ 355              		.loc 1 139 1 view .LVU102
+ 356 00f6 9AE7     		b	.L8
+ 357              	.L24:
+ 358              		.align	2
+ 359              	.L23:
+ 360 00f8 00000000 		.word	.LANCHOR4
+ 361 00fc 00000000 		.word	.LANCHOR0
+ 362              		.cfi_endproc
+ 363              	.LFE66:
+ 365              		.global	durationOfGreen
+ 366              		.global	durationOfYellow
+ 367              		.global	durationOfRed
+ 368              		.global	modeState
+ 369              		.global	buttonState
+ 370              		.section	.bss.buttonState,"aw",%nobits
+ 371              		.align	2
+ 372              		.set	.LANCHOR4,. + 0
+ 375              	buttonState:
+ 376 0000 000000   		.space	3
+ 377              		.section	.data.durationOfGreen,"aw"
+ 378              		.set	.LANCHOR2,. + 0
+ 381              	durationOfGreen:
+ 382 0000 05       		.byte	5
+ 383              		.section	.data.durationOfRed,"aw"
+ 384              		.set	.LANCHOR1,. + 0
+ 387              	durationOfRed:
+ 388 0000 07       		.byte	7
+ 389              		.section	.data.durationOfYellow,"aw"
+ 390              		.set	.LANCHOR3,. + 0
+ 393              	durationOfYellow:
+ 394 0000 02       		.byte	2
+ 395              		.section	.data.modeState,"aw"
+ 396              		.set	.LANCHOR0,. + 0
+ 399              	modeState:
+ 400 0000 03       		.byte	3
+ 401              		.text
+ 402              	.Letext0:
+ 403              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 404              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 405              		.file 4 "Core/Inc/input_processing.h"
+ 406              		.file 5 "Core/Inc/input_reading.h"
+ 407              		.file 6 "Core/Inc/led_controlling.h"
+ARM GAS  C:\Users\james\AppData\Local\Temp\cc6swWnL.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 input_processing.c
+C:\Users\james\AppData\Local\Temp\cc6swWnL.s:18     .text.IncreaseDurationOfLight:00000000 $t
+C:\Users\james\AppData\Local\Temp\cc6swWnL.s:24     .text.IncreaseDurationOfLight:00000000 IncreaseDurationOfLight
+C:\Users\james\AppData\Local\Temp\cc6swWnL.s:126    .text.IncreaseDurationOfLight:00000070 $d
+C:\Users\james\AppData\Local\Temp\cc6swWnL.s:134    .text.fsm_for_input_processing:00000000 $t
+C:\Users\james\AppData\Local\Temp\cc6swWnL.s:140    .text.fsm_for_input_processing:00000000 fsm_for_input_processing
+C:\Users\james\AppData\Local\Temp\cc6swWnL.s:360    .text.fsm_for_input_processing:000000f8 $d
+C:\Users\james\AppData\Local\Temp\cc6swWnL.s:381    .data.durationOfGreen:00000000 durationOfGreen
+C:\Users\james\AppData\Local\Temp\cc6swWnL.s:393    .data.durationOfYellow:00000000 durationOfYellow
+C:\Users\james\AppData\Local\Temp\cc6swWnL.s:387    .data.durationOfRed:00000000 durationOfRed
+C:\Users\james\AppData\Local\Temp\cc6swWnL.s:399    .data.modeState:00000000 modeState
+C:\Users\james\AppData\Local\Temp\cc6swWnL.s:375    .bss.buttonState:00000000 buttonState
+C:\Users\james\AppData\Local\Temp\cc6swWnL.s:371    .bss.buttonState:00000000 $d
+
+UNDEFINED SYMBOLS
+is_button_pressed
+TurnAllLightsOff

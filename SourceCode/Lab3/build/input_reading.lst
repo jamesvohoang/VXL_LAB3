@@ -1,0 +1,420 @@
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccxlNBYV.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"input_reading.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.button_reading,"ax",%progbits
+  18              		.align	1
+  19              		.global	button_reading
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	button_reading:
+  25              	.LFB65:
+  26              		.file 1 "Core/Src/input_reading.c"
+   1:Core/Src/input_reading.c **** #include "input_reading.h"
+   2:Core/Src/input_reading.c **** 
+   3:Core/Src/input_reading.c **** // the buffer that the final result is stored after
+   4:Core/Src/input_reading.c **** // debouncing
+   5:Core/Src/input_reading.c **** uint8_t buttonBuffer[N0_OF_BUTTONS];
+   6:Core/Src/input_reading.c **** // we define two buffers for debouncing
+   7:Core/Src/input_reading.c **** uint8_t debounceButtonBuffer1[N0_OF_BUTTONS];
+   8:Core/Src/input_reading.c **** uint8_t debounceButtonBuffer2[N0_OF_BUTTONS];
+   9:Core/Src/input_reading.c ****  // we define a flag for a button pressed more than 1 second .
+  10:Core/Src/input_reading.c **** uint8_t flagForButtonPress1s[N0_OF_BUTTONS];
+  11:Core/Src/input_reading.c ****  // we define counter for automatically increasing the value
+  12:Core/Src/input_reading.c ****  // after the button is pressed more than 1 second .
+  13:Core/Src/input_reading.c **** uint16_t counterForButtonPress1s[N0_OF_BUTTONS];
+  14:Core/Src/input_reading.c **** 
+  15:Core/Src/input_reading.c **** static GPIO_TypeDef* ButtonPort[N0_OF_BUTTONS] = {GPIOB, GPIOB, GPIOB};
+  16:Core/Src/input_reading.c **** 
+  17:Core/Src/input_reading.c **** static uint16_t ButtonPin[N0_OF_BUTTONS] = {GPIO_PIN_14, GPIO_PIN_13, GPIO_PIN_12};
+  18:Core/Src/input_reading.c **** 
+  19:Core/Src/input_reading.c ****  void button_reading() 
+  20:Core/Src/input_reading.c ****  {
+  27              		.loc 1 20 2 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 24
+  34              		.cfi_offset 3, -24
+  35              		.cfi_offset 4, -20
+  36              		.cfi_offset 5, -16
+  37              		.cfi_offset 6, -12
+  38              		.cfi_offset 7, -8
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccxlNBYV.s 			page 2
+
+
+  39              		.cfi_offset 14, -4
+  21:Core/Src/input_reading.c ****     for(uint8_t i = 0; i < N0_OF_BUTTONS ; i++) 
+  40              		.loc 1 21 5 view .LVU1
+  41              	.LBB2:
+  42              		.loc 1 21 9 view .LVU2
+  43              	.LVL0:
+  44              		.loc 1 21 17 is_stmt 0 view .LVU3
+  45 0002 0024     		movs	r4, #0
+  46              		.loc 1 21 5 view .LVU4
+  47 0004 0EE0     		b	.L2
+  48              	.LVL1:
+  49              	.L10:
+  22:Core/Src/input_reading.c ****     {
+  23:Core/Src/input_reading.c ****         debounceButtonBuffer2[i] = debounceButtonBuffer1[i];
+  24:Core/Src/input_reading.c ****         //debounceButtonBuffer1[i] = HAL_GPIO_ReadPin(BTN0_GPIO_Port, BTN0_Pin);
+  25:Core/Src/input_reading.c ****         debounceButtonBuffer1[i] = HAL_GPIO_ReadPin(ButtonPort[i], ButtonPin[i]);
+  26:Core/Src/input_reading.c **** 
+  27:Core/Src/input_reading.c ****         if(debounceButtonBuffer1[i] == debounceButtonBuffer2[i])
+  28:Core/Src/input_reading.c ****             buttonBuffer[i] = debounceButtonBuffer1[i];
+  50              		.loc 1 28 13 is_stmt 1 view .LVU5
+  51              		.loc 1 28 29 is_stmt 0 view .LVU6
+  52 0006 184B     		ldr	r3, .L11
+  53 0008 1855     		strb	r0, [r3, r4]
+  54 000a 1EE0     		b	.L3
+  55              	.L5:
+  29:Core/Src/input_reading.c **** 
+  30:Core/Src/input_reading.c ****         if(buttonBuffer[i] == 0) 
+  31:Core/Src/input_reading.c ****         {
+  32:Core/Src/input_reading.c ****             // if a button is pressed , we start counting
+  33:Core/Src/input_reading.c ****             if(counterForButtonPress1s[i] < DURATION_FOR_AUTO_INCREASING)
+  34:Core/Src/input_reading.c ****             {
+  35:Core/Src/input_reading.c ****                 counterForButtonPress1s[i]++;
+  36:Core/Src/input_reading.c ****             }
+  37:Core/Src/input_reading.c ****             else
+  38:Core/Src/input_reading.c ****             {
+  39:Core/Src/input_reading.c ****                 // the flag is turned on when 1 second has passed
+  40:Core/Src/input_reading.c ****                 // since the button is pressed .
+  41:Core/Src/input_reading.c ****                 flagForButtonPress1s[i] = 1;
+  56              		.loc 1 41 17 is_stmt 1 view .LVU7
+  57              		.loc 1 41 41 is_stmt 0 view .LVU8
+  58 000c 174B     		ldr	r3, .L11+4
+  59 000e 0122     		movs	r2, #1
+  60 0010 DA55     		strb	r2, [r3, r7]
+  61 0012 05E0     		b	.L6
+  62              	.L4:
+  42:Core/Src/input_reading.c ****                 // todo
+  43:Core/Src/input_reading.c ****             }
+  44:Core/Src/input_reading.c ****         } 
+  45:Core/Src/input_reading.c ****         else 
+  46:Core/Src/input_reading.c ****         {
+  47:Core/Src/input_reading.c ****             counterForButtonPress1s[i] = 0;
+  63              		.loc 1 47 13 is_stmt 1 view .LVU9
+  64              		.loc 1 47 40 is_stmt 0 view .LVU10
+  65 0014 0023     		movs	r3, #0
+  66 0016 164A     		ldr	r2, .L11+8
+  67 0018 22F81730 		strh	r3, [r2, r7, lsl #1]	@ movhi
+  48:Core/Src/input_reading.c ****             flagForButtonPress1s[i] = 0;
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccxlNBYV.s 			page 3
+
+
+  68              		.loc 1 48 13 is_stmt 1 view .LVU11
+  69              		.loc 1 48 37 is_stmt 0 view .LVU12
+  70 001c 134A     		ldr	r2, .L11+4
+  71 001e D355     		strb	r3, [r2, r7]
+  72              	.L6:
+  21:Core/Src/input_reading.c ****     {
+  73              		.loc 1 21 44 is_stmt 1 discriminator 2 view .LVU13
+  21:Core/Src/input_reading.c ****     {
+  74              		.loc 1 21 45 is_stmt 0 discriminator 2 view .LVU14
+  75 0020 0134     		adds	r4, r4, #1
+  76              	.LVL2:
+  21:Core/Src/input_reading.c ****     {
+  77              		.loc 1 21 45 discriminator 2 view .LVU15
+  78 0022 E4B2     		uxtb	r4, r4
+  79              	.LVL3:
+  80              	.L2:
+  21:Core/Src/input_reading.c ****     {
+  81              		.loc 1 21 24 is_stmt 1 discriminator 1 view .LVU16
+  21:Core/Src/input_reading.c ****     {
+  82              		.loc 1 21 5 is_stmt 0 discriminator 1 view .LVU17
+  83 0024 022C     		cmp	r4, #2
+  84 0026 1ED8     		bhi	.L9
+  23:Core/Src/input_reading.c ****         //debounceButtonBuffer1[i] = HAL_GPIO_ReadPin(BTN0_GPIO_Port, BTN0_Pin);
+  85              		.loc 1 23 9 is_stmt 1 view .LVU18
+  23:Core/Src/input_reading.c ****         //debounceButtonBuffer1[i] = HAL_GPIO_ReadPin(BTN0_GPIO_Port, BTN0_Pin);
+  86              		.loc 1 23 57 is_stmt 0 view .LVU19
+  87 0028 2746     		mov	r7, r4
+  88 002a 124E     		ldr	r6, .L11+12
+  89 002c 335D     		ldrb	r3, [r6, r4]	@ zero_extendqisi2
+  23:Core/Src/input_reading.c ****         //debounceButtonBuffer1[i] = HAL_GPIO_ReadPin(BTN0_GPIO_Port, BTN0_Pin);
+  90              		.loc 1 23 34 view .LVU20
+  91 002e 124D     		ldr	r5, .L11+16
+  92 0030 2B55     		strb	r3, [r5, r4]
+  25:Core/Src/input_reading.c **** 
+  93              		.loc 1 25 9 is_stmt 1 view .LVU21
+  25:Core/Src/input_reading.c **** 
+  94              		.loc 1 25 36 is_stmt 0 view .LVU22
+  95 0032 124B     		ldr	r3, .L11+20
+  96 0034 33F81410 		ldrh	r1, [r3, r4, lsl #1]
+  97 0038 114B     		ldr	r3, .L11+24
+  98 003a 53F82400 		ldr	r0, [r3, r4, lsl #2]
+  99 003e FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 100              	.LVL4:
+  25:Core/Src/input_reading.c **** 
+ 101              		.loc 1 25 34 view .LVU23
+ 102 0042 3055     		strb	r0, [r6, r4]
+  27:Core/Src/input_reading.c ****             buttonBuffer[i] = debounceButtonBuffer1[i];
+ 103              		.loc 1 27 9 is_stmt 1 view .LVU24
+  27:Core/Src/input_reading.c ****             buttonBuffer[i] = debounceButtonBuffer1[i];
+ 104              		.loc 1 27 61 is_stmt 0 view .LVU25
+ 105 0044 2B5D     		ldrb	r3, [r5, r4]	@ zero_extendqisi2
+  27:Core/Src/input_reading.c ****             buttonBuffer[i] = debounceButtonBuffer1[i];
+ 106              		.loc 1 27 11 view .LVU26
+ 107 0046 9842     		cmp	r0, r3
+ 108 0048 DDD0     		beq	.L10
+ 109              	.L3:
+  30:Core/Src/input_reading.c ****         {
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccxlNBYV.s 			page 4
+
+
+ 110              		.loc 1 30 9 is_stmt 1 view .LVU27
+  30:Core/Src/input_reading.c ****         {
+ 111              		.loc 1 30 24 is_stmt 0 view .LVU28
+ 112 004a 074B     		ldr	r3, .L11
+ 113 004c DB5D     		ldrb	r3, [r3, r7]	@ zero_extendqisi2
+  30:Core/Src/input_reading.c ****         {
+ 114              		.loc 1 30 11 view .LVU29
+ 115 004e 002B     		cmp	r3, #0
+ 116 0050 E0D1     		bne	.L4
+  33:Core/Src/input_reading.c ****             {
+ 117              		.loc 1 33 13 is_stmt 1 view .LVU30
+  33:Core/Src/input_reading.c ****             {
+ 118              		.loc 1 33 39 is_stmt 0 view .LVU31
+ 119 0052 074B     		ldr	r3, .L11+8
+ 120 0054 33F81730 		ldrh	r3, [r3, r7, lsl #1]
+  33:Core/Src/input_reading.c ****             {
+ 121              		.loc 1 33 15 view .LVU32
+ 122 0058 632B     		cmp	r3, #99
+ 123 005a D7D8     		bhi	.L5
+  35:Core/Src/input_reading.c ****             }
+ 124              		.loc 1 35 17 is_stmt 1 view .LVU33
+  35:Core/Src/input_reading.c ****             }
+ 125              		.loc 1 35 43 is_stmt 0 view .LVU34
+ 126 005c 0133     		adds	r3, r3, #1
+ 127 005e 044A     		ldr	r2, .L11+8
+ 128 0060 22F81730 		strh	r3, [r2, r7, lsl #1]	@ movhi
+ 129 0064 DCE7     		b	.L6
+ 130              	.L9:
+ 131              	.LBE2:
+  49:Core/Src/input_reading.c ****         }
+  50:Core/Src/input_reading.c ****     }
+  51:Core/Src/input_reading.c ****  }
+ 132              		.loc 1 51 2 view .LVU35
+ 133 0066 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 134              	.LVL5:
+ 135              	.L12:
+ 136              		.loc 1 51 2 view .LVU36
+ 137              		.align	2
+ 138              	.L11:
+ 139 0068 00000000 		.word	.LANCHOR4
+ 140 006c 00000000 		.word	.LANCHOR6
+ 141 0070 00000000 		.word	.LANCHOR5
+ 142 0074 00000000 		.word	.LANCHOR0
+ 143 0078 00000000 		.word	.LANCHOR1
+ 144 007c 00000000 		.word	.LANCHOR2
+ 145 0080 00000000 		.word	.LANCHOR3
+ 146              		.cfi_endproc
+ 147              	.LFE65:
+ 149              		.section	.text.is_button_pressed,"ax",%progbits
+ 150              		.align	1
+ 151              		.global	is_button_pressed
+ 152              		.syntax unified
+ 153              		.thumb
+ 154              		.thumb_func
+ 156              	is_button_pressed:
+ 157              	.LVL6:
+ 158              	.LFB66:
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccxlNBYV.s 			page 5
+
+
+  52:Core/Src/input_reading.c **** 
+  53:Core/Src/input_reading.c **** uint8_t is_button_pressed(uint8_t index) 
+  54:Core/Src/input_reading.c **** {
+ 159              		.loc 1 54 1 is_stmt 1 view -0
+ 160              		.cfi_startproc
+ 161              		@ args = 0, pretend = 0, frame = 0
+ 162              		@ frame_needed = 0, uses_anonymous_args = 0
+ 163              		@ link register save eliminated.
+  55:Core/Src/input_reading.c ****     if(index >= N0_OF_BUTTONS) 
+ 164              		.loc 1 55 5 view .LVU38
+ 165              		.loc 1 55 7 is_stmt 0 view .LVU39
+ 166 0000 0228     		cmp	r0, #2
+ 167 0002 05D8     		bhi	.L15
+  56:Core/Src/input_reading.c ****         return 0;
+  57:Core/Src/input_reading.c ****     return 1 - buttonBuffer[index];
+ 168              		.loc 1 57 5 is_stmt 1 view .LVU40
+ 169              		.loc 1 57 28 is_stmt 0 view .LVU41
+ 170 0004 034B     		ldr	r3, .L16
+ 171 0006 185C     		ldrb	r0, [r3, r0]	@ zero_extendqisi2
+ 172              	.LVL7:
+ 173              		.loc 1 57 14 view .LVU42
+ 174 0008 C0F10100 		rsb	r0, r0, #1
+ 175 000c C0B2     		uxtb	r0, r0
+ 176 000e 7047     		bx	lr
+ 177              	.LVL8:
+ 178              	.L15:
+  56:Core/Src/input_reading.c ****         return 0;
+ 179              		.loc 1 56 16 view .LVU43
+ 180 0010 0020     		movs	r0, #0
+ 181              	.LVL9:
+  58:Core/Src/input_reading.c **** }
+ 182              		.loc 1 58 1 view .LVU44
+ 183 0012 7047     		bx	lr
+ 184              	.L17:
+ 185              		.align	2
+ 186              	.L16:
+ 187 0014 00000000 		.word	.LANCHOR4
+ 188              		.cfi_endproc
+ 189              	.LFE66:
+ 191              		.section	.text.is_button_pressed_1s,"ax",%progbits
+ 192              		.align	1
+ 193              		.global	is_button_pressed_1s
+ 194              		.syntax unified
+ 195              		.thumb
+ 196              		.thumb_func
+ 198              	is_button_pressed_1s:
+ 199              	.LVL10:
+ 200              	.LFB67:
+  59:Core/Src/input_reading.c **** 
+  60:Core/Src/input_reading.c **** uint8_t is_button_pressed_1s(uint8_t index) 
+  61:Core/Src/input_reading.c **** {
+ 201              		.loc 1 61 1 is_stmt 1 view -0
+ 202              		.cfi_startproc
+ 203              		@ args = 0, pretend = 0, frame = 0
+ 204              		@ frame_needed = 0, uses_anonymous_args = 0
+ 205              		@ link register save eliminated.
+  62:Core/Src/input_reading.c ****     if(index >= N0_OF_BUTTONS) 
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccxlNBYV.s 			page 6
+
+
+ 206              		.loc 1 62 5 view .LVU46
+ 207              		.loc 1 62 7 is_stmt 0 view .LVU47
+ 208 0000 0228     		cmp	r0, #2
+ 209 0002 06D8     		bhi	.L20
+  63:Core/Src/input_reading.c ****         return 0 ;
+  64:Core/Src/input_reading.c ****     return (flagForButtonPress1s[index] == 1);
+ 210              		.loc 1 64 5 is_stmt 1 view .LVU48
+ 211              		.loc 1 64 33 is_stmt 0 view .LVU49
+ 212 0004 044B     		ldr	r3, .L21
+ 213 0006 185C     		ldrb	r0, [r3, r0]	@ zero_extendqisi2
+ 214              	.LVL11:
+ 215              		.loc 1 64 41 view .LVU50
+ 216 0008 0128     		cmp	r0, #1
+ 217 000a 14BF     		ite	ne
+ 218 000c 0020     		movne	r0, #0
+ 219 000e 0120     		moveq	r0, #1
+ 220 0010 7047     		bx	lr
+ 221              	.LVL12:
+ 222              	.L20:
+  63:Core/Src/input_reading.c ****         return 0 ;
+ 223              		.loc 1 63 16 view .LVU51
+ 224 0012 0020     		movs	r0, #0
+ 225              	.LVL13:
+  65:Core/Src/input_reading.c **** }
+ 226              		.loc 1 65 1 view .LVU52
+ 227 0014 7047     		bx	lr
+ 228              	.L22:
+ 229 0016 00BF     		.align	2
+ 230              	.L21:
+ 231 0018 00000000 		.word	.LANCHOR6
+ 232              		.cfi_endproc
+ 233              	.LFE67:
+ 235              		.global	counterForButtonPress1s
+ 236              		.global	flagForButtonPress1s
+ 237              		.global	debounceButtonBuffer2
+ 238              		.global	debounceButtonBuffer1
+ 239              		.global	buttonBuffer
+ 240              		.section	.bss.buttonBuffer,"aw",%nobits
+ 241              		.align	2
+ 242              		.set	.LANCHOR4,. + 0
+ 245              	buttonBuffer:
+ 246 0000 000000   		.space	3
+ 247              		.section	.bss.counterForButtonPress1s,"aw",%nobits
+ 248              		.align	2
+ 249              		.set	.LANCHOR5,. + 0
+ 252              	counterForButtonPress1s:
+ 253 0000 00000000 		.space	6
+ 253      0000
+ 254              		.section	.bss.debounceButtonBuffer1,"aw",%nobits
+ 255              		.align	2
+ 256              		.set	.LANCHOR0,. + 0
+ 259              	debounceButtonBuffer1:
+ 260 0000 000000   		.space	3
+ 261              		.section	.bss.debounceButtonBuffer2,"aw",%nobits
+ 262              		.align	2
+ 263              		.set	.LANCHOR1,. + 0
+ 266              	debounceButtonBuffer2:
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccxlNBYV.s 			page 7
+
+
+ 267 0000 000000   		.space	3
+ 268              		.section	.bss.flagForButtonPress1s,"aw",%nobits
+ 269              		.align	2
+ 270              		.set	.LANCHOR6,. + 0
+ 273              	flagForButtonPress1s:
+ 274 0000 000000   		.space	3
+ 275              		.section	.rodata.ButtonPin,"a"
+ 276              		.align	2
+ 277              		.set	.LANCHOR2,. + 0
+ 280              	ButtonPin:
+ 281 0000 0040     		.short	16384
+ 282 0002 0020     		.short	8192
+ 283 0004 0010     		.short	4096
+ 284              		.section	.rodata.ButtonPort,"a"
+ 285              		.align	2
+ 286              		.set	.LANCHOR3,. + 0
+ 289              	ButtonPort:
+ 290 0000 000C0140 		.word	1073810432
+ 291 0004 000C0140 		.word	1073810432
+ 292 0008 000C0140 		.word	1073810432
+ 293              		.text
+ 294              	.Letext0:
+ 295              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 296              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 297              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h"
+ 298              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ARM GAS  C:\Users\james\AppData\Local\Temp\ccxlNBYV.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 input_reading.c
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:18     .text.button_reading:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:24     .text.button_reading:00000000 button_reading
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:139    .text.button_reading:00000068 $d
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:150    .text.is_button_pressed:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:156    .text.is_button_pressed:00000000 is_button_pressed
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:187    .text.is_button_pressed:00000014 $d
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:192    .text.is_button_pressed_1s:00000000 $t
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:198    .text.is_button_pressed_1s:00000000 is_button_pressed_1s
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:231    .text.is_button_pressed_1s:00000018 $d
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:252    .bss.counterForButtonPress1s:00000000 counterForButtonPress1s
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:273    .bss.flagForButtonPress1s:00000000 flagForButtonPress1s
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:266    .bss.debounceButtonBuffer2:00000000 debounceButtonBuffer2
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:259    .bss.debounceButtonBuffer1:00000000 debounceButtonBuffer1
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:245    .bss.buttonBuffer:00000000 buttonBuffer
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:241    .bss.buttonBuffer:00000000 $d
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:248    .bss.counterForButtonPress1s:00000000 $d
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:255    .bss.debounceButtonBuffer1:00000000 $d
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:262    .bss.debounceButtonBuffer2:00000000 $d
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:269    .bss.flagForButtonPress1s:00000000 $d
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:276    .rodata.ButtonPin:00000000 $d
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:280    .rodata.ButtonPin:00000000 ButtonPin
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:285    .rodata.ButtonPort:00000000 $d
+C:\Users\james\AppData\Local\Temp\ccxlNBYV.s:289    .rodata.ButtonPort:00000000 ButtonPort
+
+UNDEFINED SYMBOLS
+HAL_GPIO_ReadPin
